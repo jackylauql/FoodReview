@@ -1,0 +1,38 @@
+<div>
+    <label>Food</label>
+    <input type="text" name="name" value="<%=food.name%>">
+</div>
+<div>
+    <label>Location</label>
+    <input type="text" name="location" value="<%=food.location%>">
+</div>
+<div>
+    <label for="mrt">Nearest MRT</label>
+    <select id="mrt" name="mrt" value="<%=food.mrt%>">
+        <option value="Yishun">Yishun</option>
+        <option value="Ang Mo Kio">Ang Mo Kio</option>
+    </select>
+</div>
+<div>
+    <label>Ratings</label>
+    <input type="text" name="ratings" value="<%=food.ratings%>">
+</div>
+<div>
+    <label>Price</label>
+    <input type="number" name="price" value="<%=food.price%>">
+</div>
+<div>
+    <label>Cuisine</label>
+    <select id="cuisine" name="cuisine" value="<%=food.cuisine%>">
+        <option value="Japanese">Japanese</option>
+        <option value="Chinese">Chinese</option>
+    </select>
+</div>
+<div>
+    <% if (food.errorMessage) { %>
+        <p><%=food.errorMessage%></p>
+        <% food.errors.forEach(error => { %>
+            <p>- <%= error %></p>
+        <% }) %>
+    <% } %>
+</div>

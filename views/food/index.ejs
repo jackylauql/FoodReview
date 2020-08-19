@@ -1,0 +1,35 @@
+<h2>All Food</h2>
+<div>
+    <h3>Search for: </h3>
+    <form>
+        <label>Name</label>
+        <input type="text" name="name">
+        <label>Location</label>
+        <input type="text" name="location">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <% foods.forEach(food => { %>
+        <a href="/food/<%=food.id%>"><div>
+            <div>
+                <p><%= food.name %></p>
+            </div>
+            <div>
+                <p><%= food.location %></p>
+            </div>
+            <div>
+                <p><%= food.mrt %></p>
+            </div>
+            <div>
+                <p><%= food.ratings %></p>
+            </div>
+            <div>
+                <p><%= food.price %></p>
+            </div>
+            <div>
+                <p><%= food.cuisine %></p>
+            </div>
+        </div></a>
+    <% }) %>
+</div>

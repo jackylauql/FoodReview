@@ -1,0 +1,7 @@
+<h2>Edit Food</h2>
+
+<form action="/food/<%=food.id%>?_method=PUT" method="POST">
+    <%- include('../form') %>
+    <a href="/food">Cancel</a>
+    <button type="submit">Update</button>
+</form>

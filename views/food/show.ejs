@@ -1,0 +1,24 @@
+<h2><%=food.name%></h2>
+
+<div>
+    <div>
+        <p><%= food.location %></p>
+    </div>
+    <div>
+        <p><%= food.mrt %></p>
+    </div>
+    <div>
+        <p><%= food.ratings %></p>
+    </div>
+    <div>
+        <p><%= food.price %></p>
+    </div>
+    <div>
+        <p><%= food.cuisine %></p>
+    </div>
+</div>
+
+<a href="/food/<%=food.id%>/edit">Edit Food Spot</a>
+<form action="/food/<%=food.id%>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+</form>
