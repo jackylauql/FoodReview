@@ -3,30 +3,37 @@
     <input type="text" name="name" value="<%=food.name%>">
 </div>
 <div>
-    <label>Location</label>
-    <input type="text" name="location" value="<%=food.location%>">
+    <fieldset>
+    <label>Address</label>
+    <input type="text" name="address" value="<%=food.address%>">
+    <label>Postal Code</label>
+    <input type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="6" pattern="\d*" placeholder="Numbers Only">
+    </fieldset>
 </div>
 <div>
-    <label for="mrt">Nearest MRT</label>
-    <select id="mrt" name="mrt" value="<%=food.mrt%>">
-        <option value="Yishun">Yishun</option>
-        <option value="Ang Mo Kio">Ang Mo Kio</option>
+    <label for="ratings">Ratings</label>
+    <select id="ratings" name="ratings" value="<%=food.ratings%>">
+        <option value="1 Star">1 Star</option>
+        <option value="2 Star">2 Star</option>
+        <option value="3 Star">3 Star</option>
+        <option value="4 Star">4 Star</option>
+        <option value="5 Star">5 Star</option>
     </select>
-</div>
-<div>
-    <label>Ratings</label>
-    <input type="text" name="ratings" value="<%=food.ratings%>">
 </div>
 <div>
     <label>Price</label>
     <input type="number" name="price" value="<%=food.price%>">
 </div>
 <div>
-    <label>Cuisine</label>
-    <select id="cuisine" name="cuisine" value="<%=food.cuisine%>">
-        <option value="Japanese">Japanese</option>
-        <option value="Chinese">Chinese</option>
-    </select>
+    <label>Types</label>
+    <input type="checkbox" id="type" name="type" value="Buffet">
+    <label for="type">Buffet</label>
+    <input type="checkbox" id="type" name="type" value="Ala Carte">
+    <label for="type">Ala Carte</label>
+    <input type="checkbox" id="type" name="type" value="Japanese">
+    <label for="type">Japanese</label>
+    <input type="checkbox" id="type" name="type" value="Chinese">
+    <label for="type">Chinese</label>
 </div>
 <div>
     <% if (food.errorMessage) { %>

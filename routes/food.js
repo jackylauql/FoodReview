@@ -2,19 +2,36 @@ const express = require('express');
 const Food = require('../models/food');
 const router = express.Router()
 
-
 // All Food Spots
 router.get('/', async (req, res) =>{
     let query = Food.find()
     if (req.query.name != null && req.query.name != '') {
         query = query.regex('name', new RegExp(req.query.name, 'i'))
     }
-    if (req.query.location != null && req.query.location != '') {
-        query = query.regex('location', new RegExp(req.query.location, 'i'))
-    }
     const foods = await query.exec()
+    if (req.query.location != null){
+        filterLocation = []
+        foods.forEach(food => {
+            if (req.query.location.includes(food.location)) {
+                filterLocation.push(food)
+            }
+        })
+    } else {
+        filterLocation = foods
+    }
+
+    if (req.query.ratings != null){
+        filterRatings = []
+        filterLocation.forEach(food => {
+            if (req.query.ratings.includes(food.ratings)) {
+                filterRatings.push(food)
+            }
+        })
+    } else {
+        filterRatings = filterLocation
+    }
     res.render('food/index', {
-        foods: foods
+        foods: filterRatings
     })
 })
 
@@ -25,9 +42,13 @@ router.get('/', async (req, res) =>{
 // View individual Food Spot
 router.get('/:id', async (req, res) => {
     const food = await Food.findById(req.params.id).exec()
-    res.render('food/show', {
-        food: food
-    })
+    try {
+        res.render('food/show', {
+            food: food
+        })
+    } catch {
+        res.send('fail')
+    }
 } )
 
 
@@ -43,11 +64,10 @@ router.get('/:id/edit', async (req, res) =>{
 router.put('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
     food.name = req.body.name
-    food.location = req.body.location
-    food.mrt = req.body.mrt
+    food.address = req.body.address
     food.ratings = req.body.ratings
     food.price = req.body.price
-    food.cuisine = req.body.cuisine
+    food.type = req.body.type
     try {
         food.save()
         res.redirect(`/food/${food.id}`)        

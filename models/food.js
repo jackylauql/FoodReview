@@ -5,12 +5,12 @@ const foodSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
+    address: {
         type: String,
         required: true
     },
-    mrt: {
-        type: String,
+    postalcode: {
+        type: Number,
         required: true
     },
     ratings: {
@@ -21,7 +21,7 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    cuisine: {
+    type: {
         type: String,
         required: true
     }

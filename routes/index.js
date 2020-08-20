@@ -17,11 +17,11 @@ router.get('/new', (req, res) =>{
 router.post('/new', async (req, res) =>{
     const food = new Food({
         name: req.body.name,
-        location: req.body.location,
-        mrt: req.body.mrt,
+        address: req.body.address,
+        postalcode: req.body.postalcode,
         ratings: req.body.ratings,
         price: req.body.price,
-        cuisine: req.body.cuisine
+        type: req.body.type
     })
     try {
         const newFood = await food.save()
@@ -32,8 +32,13 @@ router.post('/new', async (req, res) =>{
         if (food.name == "") {
             food.errors.push("Name is empty")
         }
-        if (food.location == "") {
-            food.errors.push("Location is empty")
+        if (food.address == "") {
+            food.errors.push("Address is empty")
+        }
+        if (food.postalcode == null) {
+            food.errors.push("Postal Code is empty")
+        } else if (food.postalcode.length != 6) {
+            food.errors.push("Invalid Postal Code")
         }
         if (food.ratings == "") {
             food.errors.push("Please select Ratings")

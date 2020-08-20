@@ -1,14 +1,58 @@
-<h2>All Food</h2>
+<div class="contentHead">
+    <h2>All Food</h2>
+</div>
+
 <div>
-    <h3>Search for: </h3>
-    <form>
-        <label>Name</label>
-        <input type="text" name="name">
-        <label>Location</label>
-        <input type="text" name="location">
-        <button type="submit">Search</button>
+    <h3>Looking for something?</h3>
+    <form class="searchBar">
+        <div class="searchOption">
+            <input type="text" name="name" placeholder="Filter by Name">
+        </div>
+        <div class="searchOption">
+            <input type="text" name="location" placeholder="Filter by Type">
+        </div>
+        <div class="searchOption">
+            <label>Filter by Location</label>
+            <div class="searchOptionElements searchLocation">
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="location" name="location" value="Yishun">
+                    <label for="location">Yishun</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="location" name="location" value="Ang Mo Kio">
+                    <label for="location">Ang Mo Kio</label>
+                </div>
+            </div>
+        </div>
+        <div id="ratings" class="searchOption">
+            <label>Filter by Ratings</label>
+            <div class="searchOptionElements searchRatings">
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings1" name="ratings" value="1 Star">
+                    <label for="ratings1">1 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings2" name="ratings" value="2 Star">
+                    <label for="ratings2">2 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings3" name="ratings" value="3 Star">
+                    <label for="ratings3">3 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings4" name="ratings" value="4 Star">
+                    <label for="ratings4">4 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings5" name="ratings" value="5 Star">
+                    <label for="ratings5">5 Star</label>
+                </div>
+            </div>
+        </div>
+        <button class="searchButton" type="submit"><img src="images/searchIcon.png"></button>
     </form>
 </div>
+
 <div>
     <% foods.forEach(food => { %>
         <a href="/food/<%=food.id%>"><div>
@@ -16,10 +60,7 @@
                 <p><%= food.name %></p>
             </div>
             <div>
-                <p><%= food.location %></p>
-            </div>
-            <div>
-                <p><%= food.mrt %></p>
+                <p><%= food.address %></p>
             </div>
             <div>
                 <p><%= food.ratings %></p>
@@ -28,7 +69,7 @@
                 <p><%= food.price %></p>
             </div>
             <div>
-                <p><%= food.cuisine %></p>
+                <p><%= food.type %></p>
             </div>
         </div></a>
     <% }) %>
