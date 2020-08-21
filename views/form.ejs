@@ -6,8 +6,8 @@
     <fieldset>
     <label>Address</label>
     <input type="text" name="address" value="<%=food.address%>">
-    <label>Postal Code</label>
-    <input type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="6" pattern="\d*" placeholder="Numbers Only">
+    <label>Area Code(First 2 Digits of Postal Code)</label>
+    <input type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="2" pattern="\d*" placeholder="Numbers Only">
     </fieldset>
 </div>
 <div>

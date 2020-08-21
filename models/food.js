@@ -10,8 +10,8 @@ const foodSchema = new mongoose.Schema({
         required: true
     },
     postalcode: {
-        type: Number,
-        required: true
+        type: String,
+        required: true,
     },
     ratings: {
         type: String,

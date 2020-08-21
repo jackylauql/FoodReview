@@ -3,6 +3,11 @@
     padding: 0px;
     border: 0px;
     font-family: inherit;
+    font-size: inherit;
+}
+
+.title {
+    font-size: 2.3rem;
 }
 
 body {
@@ -54,7 +59,7 @@ body {
     background-image: url('./images/banner.jpg');
     background-size: cover;
     color: white;
-    font-size: 2rem;   
+    font-size: 2.6rem;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -70,7 +75,25 @@ body {
     flex-basis: 23%;
     height: 40px;
     line-height: 40px;
-    padding-left: 1%;
+ 
+}
+
+.searchOptionToggle {
+    display: flex;
+    height: 40px;
+    padding-left: 2%;
+}
+
+.shiftImageToRight {
+    flex-grow: 5;
+    text-align: right;
+
+}
+
+.searchOptionToggle img {
+    width: auto;
+    height: 8px;
+    padding-right: 10%;
 }
 
 .searchOption:hover {
@@ -99,12 +122,26 @@ body {
     z-index: 1;
     background-color: white;
     padding: 8px 6px;
-    margin: 0px 3% 0px 0;
-    justify-content:space-around;
+    width: 85%;
+    margin: auto;
+    justify-content: center;
 }
 
 .searchOptionElement {
     display: block;
     padding: 0px 5px;
     font-weight: bold;
+    font-size: 0.8rem;
+}
+
+@media only screen and (max-width: 980px) {
+    .searchOption {
+        flex-basis: 48%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .searchOption {
+        flex-basis: 98%;
+    }
 }

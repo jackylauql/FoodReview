@@ -24,6 +24,9 @@ router.post('/new', async (req, res) =>{
         type: req.body.type
     })
     try {
+        if (food.postalcode > 82){
+            throw "Invalid Postal Code"
+        }
         const newFood = await food.save()
         res.redirect(`food/${newFood.id}`)
     } catch (err) {
@@ -35,10 +38,10 @@ router.post('/new', async (req, res) =>{
         if (food.address == "") {
             food.errors.push("Address is empty")
         }
-        if (food.postalcode == null) {
+        if (food.postalcode == "") {
             food.errors.push("Postal Code is empty")
-        } else if (food.postalcode.length != 6) {
-            food.errors.push("Invalid Postal Code")
+        } else if (food.postalcode > 80) {
+            food.errors.push(err)
         }
         if (food.ratings == "") {
             food.errors.push("Please select Ratings")

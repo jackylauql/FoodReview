@@ -12,20 +12,23 @@
             <input type="text" name="location" placeholder="Filter by Type">
         </div>
         <div class="searchOption">
-            <label>Filter by Location</label>
+            <div id="location" class="searchOptionToggle">
+                <label>Filter by Location</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>                
+            </div>
             <div class="searchOptionElements searchLocation">
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="location" name="location" value="Yishun">
-                    <label for="location">Yishun</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="location" name="location" value="Ang Mo Kio">
-                    <label for="location">Ang Mo Kio</label>
-                </div>
+                <%- include('../partials/locations.ejs') %>
             </div>
         </div>
-        <div id="ratings" class="searchOption">
-            <label>Filter by Ratings</label>
+        <div class="searchOption">
+            <div id="ratings" class="searchOptionToggle">
+                <label>Filter by Ratings</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>  
+            </div>
             <div class="searchOptionElements searchRatings">
                 <div class="searchOptionElement">
                     <input type="checkbox" id="ratings1" name="ratings" value="1 Star">

@@ -9,17 +9,19 @@ router.get('/', async (req, res) =>{
         query = query.regex('name', new RegExp(req.query.name, 'i'))
     }
     const foods = await query.exec()
-    if (req.query.location != null){
+    if (req.query.location != null && req.query.location != ''){
         filterLocation = []
         foods.forEach(food => {
-            if (req.query.location.includes(food.location)) {
-                filterLocation.push(food)
-            }
+            req.query.location.forEach(location => {
+                if (location.includes(food.postalcode)) {
+                    filterLocation.push(food)
+                    return
+                }
+            })
         })
     } else {
         filterLocation = foods
     }
-
     if (req.query.ratings != null){
         filterRatings = []
         filterLocation.forEach(food => {
