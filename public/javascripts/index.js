@@ -19,3 +19,14 @@ locationButton.addEventListener('click', () => {
         locationOptions.style.display = 'block'
     }
 })
+
+var typeButton = document.getElementById('type')
+var typeOptions = document.getElementsByClassName('searchType')[0]
+
+typeButton.addEventListener('click', () => {
+    if (typeOptions.style.display === 'flex') {
+        typeOptions.style.display = 'none'
+    } else {
+        typeOptions.style.display = 'flex'
+    }
+})

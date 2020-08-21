@@ -6,10 +6,35 @@
     <h3>Looking for something?</h3>
     <form class="searchBar">
         <div class="searchOption">
-            <input type="text" name="name" placeholder="Filter by Name">
+            <div class="searchOptionText">
+                <input type="text" name="name" placeholder="Filter by Name">
+            </div>
         </div>
         <div class="searchOption">
-            <input type="text" name="location" placeholder="Filter by Type">
+            <div id="type" class="searchOptionToggle">
+                <label>Filter by Type</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>                
+            </div>
+            <div class="searchOptionElements searchType">
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="type1" name="type" value="Japanese">
+                    <label for="type1">Japanese</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="type2" name="type" value="Chinese">
+                    <label for="type2">Chinese</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="type3" name="type" value="Buffet">
+                    <label for="type3">Buffet</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="type4" name="type" value="Ala Carte">
+                    <label for="type4">Ala Carte</label>
+                </div>
+            </div>
         </div>
         <div class="searchOption">
             <div id="location" class="searchOptionToggle">

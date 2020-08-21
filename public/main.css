@@ -71,11 +71,22 @@ body {
 
 .searchOption {
     border: 1px solid rgb(56, 56, 56);
-    flex-grow: 2;
+    flex-grow: 1;
     flex-basis: 23%;
     height: 40px;
     line-height: 40px;
  
+}
+
+.searchOptionText {
+    display: flex;
+    height: 40px;
+    padding-left: 2%;
+}
+
+.searchOptionText input {
+    width: 100%;
+    outline: none;
 }
 
 .searchOptionToggle {
@@ -102,7 +113,7 @@ body {
 
 .searchButton {
     background-color: red;
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 .searchOption:hover {
@@ -134,13 +145,13 @@ body {
     font-size: 0.8rem;
 }
 
-@media only screen and (max-width: 980px) {
+@media only screen and (max-width: 1400px) {
     .searchOption {
         flex-basis: 48%;
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
     .searchOption {
         flex-basis: 98%;
     }
