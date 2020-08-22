@@ -22,7 +22,7 @@ const foodSchema = new mongoose.Schema({
         required: true
     },
     type: {
-        type: String,
+        type: Array,
         required: true
     }
 })

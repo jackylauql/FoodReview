@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const Food = require('../models/food')
-const food = require('../models/food')
 
 router.get('/', (req, res) =>{
     res.render('index')
@@ -23,6 +22,7 @@ router.post('/new', async (req, res) =>{
         price: req.body.price,
         type: req.body.type
     })
+    res.send(food.type)
     try {
         if (food.postalcode > 82){
             throw "Invalid Postal Code"
@@ -43,11 +43,11 @@ router.post('/new', async (req, res) =>{
         } else if (food.postalcode > 80) {
             food.errors.push(err)
         }
-        if (food.ratings == "") {
-            food.errors.push("Please select Ratings")
-        }
         if (food.price == null) {
             food.errors.push("Price is empty")
+        }
+        if (food.type == null) {
+            food.errors.push("Type is empty")
         } 
         res.render('new', {food: food})
     }

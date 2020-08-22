@@ -7,7 +7,7 @@
     <form class="searchBar">
         <div class="searchOption">
             <div class="searchOptionText">
-                <input type="text" name="name" placeholder="Filter by Name">
+                <input type="text" name="keyword" placeholder="Filter by Keyword">
             </div>
         </div>
         <div class="searchOption">
@@ -15,25 +15,19 @@
                 <label>Filter by Type</label>
                 <div class="shiftImageToRight">
                     <img src="/images/arrowDown.png">
-                </div>                
+                </div>
             </div>
             <div class="searchOptionElements searchType">
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="type1" name="type" value="Japanese">
-                    <label for="type1">Japanese</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="type2" name="type" value="Chinese">
-                    <label for="type2">Chinese</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="type3" name="type" value="Buffet">
-                    <label for="type3">Buffet</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="type4" name="type" value="Ala Carte">
-                    <label for="type4">Ala Carte</label>
-                </div>
+                <% var allTypes = ['Buffet', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Western', 'Korean', 'Malay', 'Indian', 'Halal', 'Burgers', 'Hawker', 'Restaurant', 
+                'Desserts', 'Local Delights', 'Pasta', 'Mexican', 'Cafes', 'Unique'] %>
+                <% var index = 1 %>
+                    <% allTypes.forEach(type => { %>
+                        <div class="searchOptionElement">
+                            <input type="checkbox" id="type<%=index%>" name="type" value="<%=type%>">
+                            <label for="type<%=index%>"><%=type%></label>
+                        </div>
+                        <% index += 1 %>
+                    <% }) %>
             </div>
         </div>
         <div class="searchOption">

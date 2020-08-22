@@ -70,12 +70,11 @@ body {
 }
 
 .searchOption {
-    border: 1px solid rgb(56, 56, 56);
+    border: 1px solid rgb(179, 179, 179);
     flex-grow: 1;
     flex-basis: 23%;
     height: 40px;
     line-height: 40px;
- 
 }
 
 .searchOptionText {
@@ -96,7 +95,7 @@ body {
 }
 
 .shiftImageToRight {
-    flex-grow: 5;
+    flex-grow: 4;
     text-align: right;
 
 }
@@ -104,7 +103,7 @@ body {
 .searchOptionToggle img {
     width: auto;
     height: 8px;
-    padding-right: 10%;
+    padding-right: 20px;
 }
 
 .searchOption:hover {
@@ -129,13 +128,13 @@ body {
     flex-wrap: wrap;
     position: relative;
     bottom: 8px;
-    border: 1px solid black;
+    border: 1px solid rgba(114, 114, 114, 0.3);
     z-index: 1;
     background-color: white;
     padding: 8px 6px;
     width: 85%;
     margin: auto;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .searchOptionElement {

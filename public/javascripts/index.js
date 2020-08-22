@@ -30,3 +30,12 @@ typeButton.addEventListener('click', () => {
         typeOptions.style.display = 'flex'
     }
 })
+
+var checkBoxes = 'input[name=checkbox]'
+$(checkBoxes).change(() => {
+    if($(this).is(':checked')) {
+        $(this).style.color = "blue"
+    } else {
+        
+    }
+});

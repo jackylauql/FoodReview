@@ -5,23 +5,51 @@ const router = express.Router()
 // All Food Spots
 router.get('/', async (req, res) =>{
     let query = Food.find()
-    if (req.query.name != null && req.query.name != '') {
-        query = query.regex('name', new RegExp(req.query.name, 'i'))
+    if (req.query.keyword != null && req.query.keyword != '') {
+        query = query.find({ $or: [ {name: {$regex: new RegExp(req.query.keyword, 'i')}}, {address: {$regex: new RegExp(req.query.keyword, 'i')}}] })
     }
     const foods = await query.exec()
-    if (req.query.location != null && req.query.location != ''){
-        filterLocation = []
+    
+    // Filter Type
+    if (req.query.type != null && req.query.type != ''){
+        filterType = []
         foods.forEach(food => {
-            req.query.location.forEach(location => {
-                if (location.includes(food.postalcode)) {
-                    filterLocation.push(food)
+            food.type.forEach(foodType => {
+                if (req.query.type.includes(foodType)) {
+                    filterType.push(food)
                     return
                 }
             })
         })
     } else {
-        filterLocation = foods
+        filterType = foods
     }
+
+    // Filter Location
+    if (req.query.location != null && req.query.location != ''){
+        filterLocation = []
+        try {
+            filterType.forEach(food => {
+                req.query.location.forEach(location => {
+                    if (location.includes(food.postalcode)) {
+                        filterLocation.push(food)
+                        return
+                    }
+                })
+            })
+        } catch {
+            filterType.forEach(food => {
+                if (req.query.location.includes(food.postalcode)) {
+                    filterLocation.push(food)
+                    return
+                    }
+                })
+            }
+    } else {
+        filterLocation = filterType
+    }
+    
+    // Filter Ratings
     if (req.query.ratings != null){
         filterRatings = []
         filterLocation.forEach(food => {
@@ -32,6 +60,8 @@ router.get('/', async (req, res) =>{
     } else {
         filterRatings = filterLocation
     }
+    
+    // Render after Filtering
     res.render('food/index', {
         foods: filterRatings
     })

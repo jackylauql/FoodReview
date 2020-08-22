@@ -24,16 +24,10 @@
     <label>Price</label>
     <input type="number" name="price" value="<%=food.price%>">
 </div>
+
 <div>
     <label>Types</label>
-    <input type="checkbox" id="type" name="type" value="Buffet">
-    <label for="type">Buffet</label>
-    <input type="checkbox" id="type" name="type" value="Ala Carte">
-    <label for="type">Ala Carte</label>
-    <input type="checkbox" id="type" name="type" value="Japanese">
-    <label for="type">Japanese</label>
-    <input type="checkbox" id="type" name="type" value="Chinese">
-    <label for="type">Chinese</label>
+    <%- include('./partials/types.ejs') %>
 </div>
 <div>
     <% if (food.errorMessage) { %>
