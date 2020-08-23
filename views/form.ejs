@@ -1,10 +1,10 @@
 <div>
     <label>Food</label>
-    <input type="text" name="name" value="<%=food.name%>">
+    <input type="text" name="name" value="<%=food.name%>" maxlength="30">
 </div>
 <div>
     <label>Shop's Name</label>
-    <input type="text" name="shopName" value="<%=food.shopName%>">
+    <input type="text" name="shopName" value="<%=food.shopName%>" maxlength="30">
 </div>
 <div>
     <label>Image</label>
@@ -13,7 +13,7 @@
 <div>
     <fieldset>
     <label>Address</label>
-    <input type="text" name="address" value="<%=food.address%>">
+    <input type="text" name="address" value="<%=food.address%>" maxlength="100">
     <label>Area Code(First 2 Digits of Postal Code)</label>
     <input type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="2" pattern="\d*" placeholder="Numbers Only">
     </fieldset>

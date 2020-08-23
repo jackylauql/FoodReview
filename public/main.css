@@ -4,6 +4,13 @@
     border: 0px;
     font-family: inherit;
     font-size: inherit;
+    text-decoration: inherit;
+    color: inherit;
+    z-index: inherit;
+}
+
+*:visited {
+    color: rgb(33, 33, 33); 
 }
 
 .title {
@@ -11,6 +18,7 @@
 }
 
 body {
+    color: rgb(33, 33, 33); 
     width: 70%;
     margin: auto;
     font-family: 'Montserrat', sans-serif;
@@ -111,7 +119,7 @@ body {
 }
 
 .searchButton {
-    background-color: red;
+    background-color: rgba(27, 182, 135, 0.925);
     flex-grow: 2;
 }
 
@@ -129,7 +137,7 @@ body {
     position: relative;
     bottom: 8px;
     border: 1px solid rgba(114, 114, 114, 0.3);
-    z-index: 1;
+    z-index: 3;
     background-color: white;
     padding: 8px 6px;
     width: 85%;
@@ -150,10 +158,78 @@ body {
     display: flex;
     margin-top: 30px;
     justify-content: space-around;
-    background-color: grey;
     flex-wrap: wrap;
 }
 
+.foodContentElement {
+    text-decoration: none;
+    margin: 20px 40px;
+}
+
+.foodContentText {
+    position: absolute;
+    display: flex;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    justify-content: center;
+    color: rgb(104, 241, 200);
+    font-weight: bold;
+    border-radius: 50%;
+    transition: 0.4s;
+    flex-wrap: wrap;
+}
+
+.foodContentText span {
+    margin: auto;
+}
+
+.foodContentImage img {
+    position: relative;
+    border-radius: 50%;
+    transition: 0.4s;
+    z-index: 1;
+}
+
+.foodContentElement:hover .foodContentImage img {
+    border-radius: 0%;
+}
+
+.foodContentElement:hover .foodContentText {    
+    z-index: 2;
+    border-radius: 0%;    
+    background-color: rgba(43, 43, 43, 0.7);    
+}
+
+.foodContentName {
+    font-weight: bold;
+    font-size: 1.3rem;
+    line-height: 50px;
+    text-align: center;
+}
+
+.foodContentShopName {
+    line-height: 38px;
+    vertical-align: middle;
+}
+
+.foodContentShopName span {
+    color: rgba(22, 173, 128, 0.925);
+    font-weight: bold;
+}
+
+.foodContentRow {
+    display: flex;
+    align-items: center;
+    width:200px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.foodContentRatings {
+    flex-grow: 1;
+    text-align: right;
+}
 
 @media only screen and (max-width: 1400px) {
     .searchOption {
