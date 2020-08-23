@@ -75,24 +75,20 @@
     </form>
 </div>
 
-<div>
+<div class="allFoodContent">
     <% foods.forEach(food => { %>
-        <a href="/food/<%=food.id%>"><div>
-            <div>
-                <p><%= food.name %></p>
+        <a href="/food/<%=food.id%>">
+            <div class="foodContentElement">
+                <div>
+                    <img src='images/foodImages/<%=food.foodImage %>' height="200px" width="200px">
+                </div>
+                <div>
+                    <p><%= food.name %></p>
+                </div>
+                <div>
+                    <p><%= food.shopName %></p>
+                </div>
             </div>
-            <div>
-                <p><%= food.address %></p>
-            </div>
-            <div>
-                <p><%= food.ratings %></p>
-            </div>
-            <div>
-                <p><%= food.price %></p>
-            </div>
-            <div>
-                <p><%= food.type %></p>
-            </div>
-        </div></a>
+        </a>
     <% }) %>
 </div>

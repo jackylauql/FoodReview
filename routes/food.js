@@ -1,6 +1,15 @@
 const express = require('express');
 const Food = require('../models/food');
 const router = express.Router()
+const multer = require('multer')
+const fs = require('fs')
+imageTypes = ['image/jpeg', 'image/png', 'image/gif']
+const upload = multer({
+    dest: 'public/images/foodImages',
+    fileFilter: (req, file, callback) => {
+        callback(null, imageTypes.includes(file.mimetype))
+    }
+})
 
 // All Food Spots
 router.get('/', async (req, res) =>{
@@ -92,25 +101,72 @@ router.get('/:id/edit', async (req, res) =>{
     })
 })
 
-
-router.put('/:id', async (req, res) =>{
+router.put('/:id', upload.single('image'), async (req, res) =>{
     let food = await Food.findById(req.params.id)
+    let oldImageName
+    let newImageName
+    if (req.file != null) {
+        oldImageName = food.foodImage
+        newImageName = req.file.filename
+        food.foodImage = newImageName
+    }
+    
     food.name = req.body.name
+    food.shopName = req.body.shopName
     food.address = req.body.address
     food.ratings = req.body.ratings
     food.price = req.body.price
     food.type = req.body.type
     try {
+        if (food.name == "" || food.shopName == "" || food.address == "" || food.postalcode == "" || food.postalcode > 80 || food.price == null || food.type == null){
+            throw "Error updating Food Spot"
+        }
+
         food.save()
+        fs.unlink(`public/images/foodImages/${oldImageName}`, err => {
+            if (err) console.error(err)
+        })
         res.redirect(`/food/${food.id}`)        
-    } catch {
-        res.send('fail')
+    } catch (err) {
+        food.foodImage = oldImageName
+        fs.unlink(`public/images/foodImages/${newImageName}`, err => {
+            if (err) console.error(err)
+        })
+        food.errorMessage = err
+        food.errors = []
+        if (food.name == "") {
+            food.errors.push("Name is empty")
+        }
+        if (food.shopName == "") {
+            food.errors.push("Shop Name is empty")
+        }
+        if (food.address == "") {
+            food.errors.push("Address is empty")
+        }
+        if (food.postalcode == "") {
+            food.errors.push("Postal Code is empty")
+        } else if (food.postalcode > 80) {
+            food.errors.push(err)
+        }
+        if (food.price == null) {
+            food.errors.push("Price is empty")
+        }
+        if (food.type == null) {
+            food.errors.push("Type is empty")
+        }
+
+        res.render('food/edit', {food: food})
     }
 })
 
 // Delete Food Spot
 router.delete('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
+    if (food.foodImage != null) {
+        fs.unlink(`public/images/foodImages/${food.foodImage}`, err => {
+            if (err) console.error(err)
+        })
+    }
     await food.remove()
     res.redirect('/food')
 })

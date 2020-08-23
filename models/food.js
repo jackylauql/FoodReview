@@ -5,6 +5,10 @@ const foodSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    shopName: {
+        type: String,
+        required: true
+    },
     address: {
         type: String,
         required: true
@@ -23,6 +27,10 @@ const foodSchema = new mongoose.Schema({
     },
     type: {
         type: Array,
+        required: true
+    },
+    foodImage: {
+        type: String,
         required: true
     }
 })

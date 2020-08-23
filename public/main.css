@@ -144,6 +144,17 @@ body {
     font-size: 0.8rem;
 }
 
+/* Food Content */
+
+.allFoodContent {
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-around;
+    background-color: grey;
+    flex-wrap: wrap;
+}
+
+
 @media only screen and (max-width: 1400px) {
     .searchOption {
         flex-basis: 48%;
