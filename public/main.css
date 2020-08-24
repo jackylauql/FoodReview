@@ -13,6 +13,10 @@
     color: rgb(33, 33, 33); 
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .title {
     font-size: 2.3rem;
 }
@@ -203,9 +207,7 @@ body {
 
 .foodContentName {
     font-weight: bold;
-    font-size: 1.3rem;
-    line-height: 50px;
-    text-align: center;
+    font-size: 1.2rem;
 }
 
 .foodContentShopName {
@@ -229,6 +231,146 @@ body {
 .foodContentRatings {
     flex-grow: 1;
     text-align: right;
+}
+
+/* Individual Food Page */
+
+/* Left Side */
+.showContent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header img {
+    position: relative;
+    z-index: 1;
+}
+
+.showFoodContentContainer {
+    display: flex;
+    width: 50%;
+    height: 750px;
+    align-items: center;
+    justify-content: center;
+}
+
+.showFoodContent:hover .showFoodContentText {
+    z-index: 2;
+}
+
+.showFoodContentText {
+    display:flex;
+    position: absolute;
+    background-color: rgba(20, 20, 20, 0.801);
+    height: 400px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    flex-wrap: wrap;
+}
+
+.showFoodContentText span {
+    padding: 0px 20px;
+}
+
+.edit {
+    background-color: rgb(125, 252, 220);
+    width: 160px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 15%;
+}
+
+.delete {
+    background-color: rgb(247, 55, 55);
+    width: 160px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 15%;
+}
+
+.deleteConfirmationText {
+    display: none;
+    width: 100%;
+    color: rgb(170, 54, 54);
+    font-weight: bold;
+}
+
+.deleteConfirmationBox {
+    display: none;
+}
+
+.deleteConfirmationBox span {
+    padding: 0px 10px;
+}
+
+.deleteYes {
+    background-color: rgb(125, 252, 220);
+    font-weight: bold;
+    border-radius: 15%; 
+    width: 80px;
+}
+
+.deleteNo {
+    background-color: rgb(247, 55, 55);
+    width: 80px;
+    font-weight: bold;
+    border-radius: 15%;
+}
+
+.showFoodContentContainer .header {
+    text-align: center;
+}
+
+.showFoodContentContainer .header h2 {
+    font-size: 1.6rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.showFoodContentContainer .body {
+    width: 70%;
+    margin: auto;
+}
+
+.flexRow {
+    display: flex;
+}
+
+.flexRow p {
+    width: 80px;
+}
+
+.flexRow span {
+    flex-grow: 1;
+    text-align: right;
+    flex-wrap: wrap;
+}
+
+.showShopContent {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 750px;
+    justify-content: space-around;
+}
+
+/* Right Side */
+
+.sameShopFood {
+    padding: 10px 20px;
+    margin: auto;
+}
+
+.sameShopFood img {
+    border-radius: 50%;
+}
+
+.shopName {
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    font-family: 'Raleway', sans-serif;
 }
 
 @media only screen and (max-width: 1400px) {

@@ -82,10 +82,17 @@ router.get('/', async (req, res) =>{
 
 // View individual Food Spot
 router.get('/:id', async (req, res) => {
+    let query = Food.find()    
     const food = await Food.findById(req.params.id).exec()
+    query = query.find( {$and: [
+        {shopName: {$regex: new RegExp(food.shopName, 'i')}},
+        {name: {$ne: food.name}}
+    ]}).limit(4)
+    const sameShop = await query.exec()
     try {
         res.render('food/show', {
-            food: food
+            food: food,
+            sameShop: sameShop
         })
     } catch {
         res.send('fail')
@@ -123,9 +130,11 @@ router.put('/:id', upload.single('image'), async (req, res) =>{
         }
 
         food.save()
-        fs.unlink(`public/images/foodImages/${oldImageName}`, err => {
-            if (err) console.error(err)
-        })
+        if (req.file != null) {
+            fs.unlink(`public/images/foodImages/${oldImageName}`, err => {
+                if (err) console.error(err)
+            })
+        }        
         res.redirect(`/food/${food.id}`)        
     } catch (err) {
         food.foodImage = oldImageName

@@ -1,0 +1,30 @@
+<a href="/food/<%=food.id%>">
+    <div class="foodContentElement">
+        <div class="foodContentText">
+            <span>Address: <%=food.address%></span>
+        </div>
+        <div class="foodContentImage">
+            <img src='/images/foodImages/<%=food.foodImage %>' height="200px" width="200px">
+        </div>
+        <div class="foodContentRow">
+            <div class="foodContentName">
+                <p><%= food.name %></p>
+            </div>
+        </div>
+        <div class="foodContentRow">
+            <div class="foodContentShopName">
+                <p>from <span><%= food.shopName %></span></p>
+            </div>
+        </div>
+        <div class="foodContentRow">
+            <div class="foodContentPrice">
+                <span>~ $<%=food.price%>/pax</span>
+            </div>
+            <div class="foodContentRatings">
+                <span>
+                    <%- include('../partials/convertStars.ejs', {food: food})%>
+                </span>
+            </div>
+        </div>
+    </div>
+</a>

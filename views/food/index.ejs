@@ -77,65 +77,6 @@
 
 <div class="allFoodContent">
     <% foods.forEach(food => { %>
-        <a href="/food/<%=food.id%>">
-            <div class="foodContentElement">
-                <div class="foodContentText">
-                    <span>Address: <%=food.address%></span>
-                </div>
-                <div class="foodContentImage">
-                    <img src='images/foodImages/<%=food.foodImage %>' height="200px" width="200px">
-                </div>
-                <div class="foodContentRow">
-                    <div class="foodContentName">
-                        <p><%= food.name %></p>
-                    </div>
-                </div>
-                <div class="foodContentRow">
-                    <div class="foodContentShopName">
-                        <p>from <span><%= food.shopName %></span></p>
-                    </div>
-                </div>
-                <div class="foodContentRow">
-                    <div class="foodContentPrice">
-                        <span>~ $<%=food.price%>/pax</span>
-                    </div>
-                    <div class="foodContentRatings">
-                        <span>
-                            <% if (food.ratings == '1 Star') { %>
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                            <% } else if (food.ratings == '2 Star') { %>
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                            <% } else if (food.ratings == '3 Star') { %>
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                            <% } else if (food.ratings == '4 Star') { %>
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/emptyStar.png" height="18px" width="18px">
-                            <% } else { %>
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                                <img src="images/star.png" height="18px" width="18px">
-                            <% } %>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </a>
+        <%- include('../partials/foodElementLink.ejs', {food: food}) %>
     <% }) %>
 </div>

@@ -1,21 +1,72 @@
-<h2><%=food.name%></h2>
 
-<div>
-    <div>
-        <p><%= food.address %></p>
+<div class="showContent">
+    <div class="showFoodContentContainer">
+        <div class="showFoodContent">
+            <div class="header">
+                <div>
+                    <h2><%=food.name%></h2>
+                </div>
+                <div class="showFoodContentText">
+                    <span>
+                        <a href="/food/<%=food.id%>/edit">
+                            <button class="edit">Edit</button>
+                        </a>
+                    </span>
+                    <span>
+                        <button class="delete">Delete</button>
+                    </span>
+                    <div class="deleteConfirmationText">This will permanently delete the item. Are you sure?</div>
+                    <div class="deleteConfirmationBox">
+                        <span>
+                            <form action="/food/<%=food.id%>?_method=DELETE" method="POST">                           
+                                <button class="deleteYes" type="submit">Yes</button>
+                            </form>
+                        </span>
+                        <span>
+                            <button class="deleteNo">No</button>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <img src='/images/foodImages/<%=food.foodImage %>' height='400px' width='400px'>
+                </div>
+                <div class="foodContentShopName">
+                    <p>from <span><%= food.shopName %></span></p>
+                </div>
+            </div>
+            <div class="body">
+                <div class="flexRow">
+                    <p>Address: </p>
+                    <span><%= food.address %></span>
+                </div>
+                <div class="flexRow">
+                    <p>Ratings: </p>
+                    <span><%-include('../partials/convertStars.ejs', {food: food}) %></span>
+                </div>
+                <div class="flexRow">
+                    <p>Price: </p>
+                    <span>~ $<%= food.price %>/pax</span>
+                </div>
+                <div class="flexRow">
+                    <p>Tags: </p>
+                    <span>
+                        <% food.type.forEach(type => { %>
+                            <%=type%> 
+                        <% }) %>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <p><%= food.ratings %></p>
-    </div>
-    <div>
-        <p><%= food.price %></p>
-    </div>
-    <div>
-        <p><%= food.type %></p>
+
+    <div class="showShopContent">
+        <div class="shopName">
+            <h2>Other food items from: <%=food.shopName%></h2>
+        </div>
+        <% sameShop.forEach(sameShopFood => { %>
+            <div class="sameShopFood">
+                <%- include('../partials/foodElementLink.ejs', {food: sameShopFood}) %>
+            </div>
+        <% }) %>
     </div>
 </div>
-
-<a href="/food/<%=food.id%>/edit">Edit Food Spot</a>
-<form action="/food/<%=food.id%>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
-</form>

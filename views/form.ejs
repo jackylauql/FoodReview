@@ -1,6 +1,6 @@
 <div>
     <label>Food</label>
-    <input type="text" name="name" value="<%=food.name%>" maxlength="30">
+    <input type="text" name="name" value="<%=food.name%>" maxlength="22">
 </div>
 <div>
     <label>Shop's Name</label>
@@ -35,7 +35,7 @@
 
 <div>
     <label>Types</label>
-    <%- include('./partials/types.ejs') %>
+    <%- include('./partials/types.ejs', {food: food}) %>
 </div>
 <div>
     <% if (food.errorMessage) { %>

@@ -2,7 +2,11 @@
 'Desserts', 'Local Delights', 'Pasta', 'Mexican', 'Cafes', 'Unique'] %>
 <% var index = 1 %>
 <% allTypes.forEach(type => { %>
-    <input type="checkbox" id="type<%=index%>" name="type" value="<%=type%>">
+    <input 
+    <% if (food.type.includes(type)){ %>
+        checked 
+    <% } %>
+    type="checkbox" id="type<%=index%>" name="type" value="<%=type%>">
     <label for="type<%=index%>"><%=type%></label>
     <% index += 1 %>
 <% }) %>

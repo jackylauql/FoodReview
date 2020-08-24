@@ -39,3 +39,4 @@ $(checkBoxes).change(() => {
         
     }
 });
+
