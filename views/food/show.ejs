@@ -55,6 +55,12 @@
                         <% }) %>
                     </span>
                 </div>
+                <div class="flexRow">
+                    <p>Date added: </p>
+                    <% var foodDate = food.date.toDateString().split(' ') %>
+                    <% foodDate = `${foodDate[1]} ${foodDate[2]} ${foodDate[3]}`%>
+                    <span><%=foodDate%></span>
+                </div>
             </div>
         </div>
     </div>

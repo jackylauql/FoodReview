@@ -11,8 +11,10 @@ const upload = multer({
     }
 })
 
-router.get('/', (req, res) =>{
-    res.render('index')
+router.get('/', async (req, res) =>{
+    let query = Food.find().sort({"date": -1}).limit(3)
+    const food = await query.exec()
+    res.render('index', {food: food})
 })
 
 // New Food Spot
