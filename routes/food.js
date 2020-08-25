@@ -69,6 +69,9 @@ router.get('/', async (req, res) =>{
     } else {
         filterRatings = filterLocation
     }
+
+    // Sort by Date
+    filterRatings.sort((a, b) => (a.date > b.date) ? 1 : -1)
     
     // Render after Filtering
     res.render('food/index', {

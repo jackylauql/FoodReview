@@ -12,9 +12,24 @@ const upload = multer({
 })
 
 router.get('/', async (req, res) =>{
-    let query = Food.find().sort({"date": -1}).limit(3)
-    const food = await query.exec()
-    res.render('index', {food: food})
+    highlightFood = Food.find()
+    highlightQuery = highlightFood.sort({"date": -1}).limit(4)
+    const food = await highlightQuery.exec()
+    food.sort((a, b) => (a.date > b.date) ? 1 : -1)
+    
+    recommendationFood = Food.find()
+    recommendationQuery = await recommendationFood.find({ $or: [{ratings : "5 Star"}, {ratings : "4 Star"}]}).exec()
+    randomIndexArray = []
+    while (randomIndexArray.length < 4 ) {
+        let randomIndex = Math.floor(Math.random() * recommendationQuery.length)
+        if (randomIndexArray.includes(randomIndex) == false) {
+            randomIndexArray.push(randomIndex)
+        }
+    }
+    randomRecommendation = [recommendationQuery[randomIndexArray[0]], recommendationQuery[randomIndexArray[1]],
+                            recommendationQuery[randomIndexArray[2]], recommendationQuery[randomIndexArray[3]]]
+    
+    res.render('index', {food: food, randomRecommendation: randomRecommendation})
 })
 
 // New Food Spot
