@@ -1,15 +1,7 @@
 const express = require('express');
 const Food = require('../models/food');
 const router = express.Router()
-const multer = require('multer')
-const fs = require('fs')
 imageTypes = ['image/jpeg', 'image/png', 'image/gif']
-const upload = multer({
-    dest: 'public/images/foodImages',
-    fileFilter: (req, file, callback) => {
-        callback(null, imageTypes.includes(file.mimetype))
-    }
-})
 
 // All Food Spots
 router.get('/', async (req, res) =>{
@@ -111,7 +103,7 @@ router.get('/:id/edit', async (req, res) =>{
     })
 })
 
-router.put('/:id', upload.single('image'), async (req, res) =>{
+router.put('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
     let oldImageName
     let newImageName
