@@ -1,15 +1,7 @@
 const express = require('express');
 const Food = require('../models/food');
 const router = express.Router()
-const multer = require('multer')
-const fs = require('fs')
 imageTypes = ['image/jpeg', 'image/png', 'image/gif']
-const upload = multer({
-    dest: 'public/images/foodImages',
-    fileFilter: (req, file, callback) => {
-        callback(null, imageTypes.includes(file.mimetype))
-    }
-})
 
 // All Food Spots
 router.get('/', async (req, res) =>{
@@ -111,39 +103,24 @@ router.get('/:id/edit', async (req, res) =>{
     })
 })
 
-router.put('/:id', upload.single('image'), async (req, res) =>{
+router.put('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
-    let oldImageName
-    let newImageName
-    if (req.file != null) {
-        oldImageName = food.foodImage
-        newImageName = req.file.filename
-        food.foodImage = newImageName
-    }
-    
+
     food.name = req.body.name
     food.shopName = req.body.shopName
     food.address = req.body.address
     food.ratings = req.body.ratings
     food.price = req.body.price
     food.type = req.body.type
+    saveImage(food, req.body.image)
     try {
         if (food.name == "" || food.shopName == "" || food.address == "" || food.postalcode == "" || food.postalcode > 80 || food.price == null || food.type == null){
             throw "Error updating Food Spot"
         }
 
-        food.save()
-        if (req.file != null) {
-            fs.unlink(`public/images/foodImages/${oldImageName}`, err => {
-                if (err) console.error(err)
-            })
-        }        
+        food.save()   
         res.redirect(`/food/${food.id}`)        
     } catch (err) {
-        food.foodImage = oldImageName
-        fs.unlink(`public/images/foodImages/${newImageName}`, err => {
-            if (err) console.error(err)
-        })
         food.errorMessage = err
         food.errors = []
         if (food.name == "") {
@@ -171,14 +148,17 @@ router.put('/:id', upload.single('image'), async (req, res) =>{
     }
 })
 
+const saveImage = (food, image) => {
+    const foodImage = JSON.parse(image)
+    if (imageTypes.includes(foodImage.type)) {
+        food.foodImage = new Buffer.from(foodImage.data, 'base64')
+        food.foodImageType = foodImage.type
+    }
+}
+
 // Delete Food Spot
 router.delete('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
-    if (food.foodImage != null) {
-        fs.unlink(`public/images/foodImages/${food.foodImage}`, err => {
-            if (err) console.error(err)
-        })
-    }
     await food.remove()
     res.redirect('/food')
 })

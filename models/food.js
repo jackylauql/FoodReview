@@ -30,6 +30,10 @@ const foodSchema = new mongoose.Schema({
         required: true
     },
     foodImage: {
+        type: Buffer,
+        required: true
+    },
+    foodImageType: {
         type: String,
         required: true
     },
@@ -38,6 +42,10 @@ const foodSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     }
+})
+
+foodSchema.virtual('foodImagePath').get(function() {
+    return `data:${this.foodImageType};charset=utf-8;base64,${this.foodImage.toString('base64')}`
 })
 
 module.exports = mongoose.model('Food', foodSchema)

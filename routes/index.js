@@ -1,15 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Food = require('../models/food')
-const multer = require('multer')
-const fs = require('fs')
 imageTypes = ['image/jpeg', 'image/png', 'image/gif']
-const upload = multer({
-    dest: 'public/images/foodImages',
-    fileFilter: (req, file, callback) => {
-        callback(null, imageTypes.includes(file.mimetype))
-    }
-})
 
 router.get('/', async (req, res) =>{
     highlightFood = Food.find()
@@ -20,14 +12,18 @@ router.get('/', async (req, res) =>{
     recommendationFood = Food.find()
     recommendationQuery = await recommendationFood.find({ $or: [{ratings : "5 Star"}, {ratings : "4 Star"}]}).exec()
     randomIndexArray = []
-    while (randomIndexArray.length < 4 ) {
+    
+    while (randomIndexArray.length < 4 && randomIndexArray.length < recommendationQuery.length) {
         let randomIndex = Math.floor(Math.random() * recommendationQuery.length)
         if (randomIndexArray.includes(randomIndex) == false) {
             randomIndexArray.push(randomIndex)
         }
     }
-    randomRecommendation = [recommendationQuery[randomIndexArray[0]], recommendationQuery[randomIndexArray[1]],
-                            recommendationQuery[randomIndexArray[2]], recommendationQuery[randomIndexArray[3]]]
+    
+    var randomRecommendation = []
+    for (index in randomIndexArray) {
+        randomRecommendation.push(recommendationQuery[index])
+    }
     
     res.render('index', {food: food, randomRecommendation: randomRecommendation})
 })
@@ -39,8 +35,7 @@ router.get('/new', (req, res) =>{
     res.render('new', {food: food}) 
 })
 
-router.post('/new', upload.single('image'), async (req, res) =>{
-    const imageName = req.file != null ? req.file.filename : null
+router.post('/new', async (req, res) =>{
     const food = new Food({
         name: req.body.name,
         shopName: req.body.shopName,
@@ -48,9 +43,9 @@ router.post('/new', upload.single('image'), async (req, res) =>{
         postalcode: req.body.postalcode,
         ratings: req.body.ratings,
         price: req.body.price,
-        foodImage: imageName,
         type: req.body.type
     })    
+    saveImage(food, req.body.image)
     try {
         if (food.postalcode > 82){
             throw "Invalid Postal Code"
@@ -83,14 +78,16 @@ router.post('/new', upload.single('image'), async (req, res) =>{
         if (food.type == '') {
             food.errors.push("Type is empty")
         }
-        if (food.foodImage != null) {
-            fs.unlink(`public/images/foodImages/${food.foodImage}`, err => {
-                if (err) console.error(err)
-            })
-        }
         res.render('new', {food: food})
     }
-    
 })
+
+const saveImage = (food, image) => {
+    const foodImage = JSON.parse(image)
+    if (imageTypes.includes(foodImage.type)) {
+        food.foodImage = new Buffer.from(foodImage.data, 'base64')
+        food.foodImageType = foodImage.type
+    }
+}
 
 module.exports = router
