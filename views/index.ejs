@@ -1,11 +1,21 @@
 
-<div class="indexHeader">Latest Noms</div>
+<div class="indexHeader">
+    Latest Noms
+    <div class="headerUnderline"></div>
+</div>
+
 <div class="flexContainer highlights">
     <% food.forEach(food => { %>
         <%- include('./partials/foodElementLink.ejs', {food: food})%>
     <% }) %>
 </div>
+
+<div class="buttonContainer">
+    <a href="/food" class="button">More Noms!</a>
+</div>
+
 <div class="indexHeader">Random Recommendations</div>
+<div class="headerUnderline"></div>
 <div class="flexContainer randomRecommendation">
     <% randomRecommendation.forEach(recommendation => { %>
         <%- include('./partials/foodElementLink.ejs', {food: recommendation})%>

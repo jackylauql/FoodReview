@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Food = require('../models/food')
-imageTypes = ['image/jpeg', 'image/png', 'image/gif']
+imageTypes = ['image/jpeg', 'image/png']
 
 router.get('/', async (req, res) =>{
     highlightFood = Food.find()
