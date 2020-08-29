@@ -149,6 +149,7 @@ router.put('/:id', async (req, res) =>{
 })
 
 const saveImage = (food, image) => {
+    if (image == '') return
     const foodImage = JSON.parse(image)
     if (imageTypes.includes(foodImage.type)) {
         food.foodImage = new Buffer.from(foodImage.data, 'base64')

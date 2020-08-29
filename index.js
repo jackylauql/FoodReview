@@ -8,7 +8,7 @@ const methodOverride = require('method-override')
 const app = express()
 const indexRouter = require('./routes/index')
 const foodRouter = require('./routes/food')
-const categoryRouter = require('./routes/category')
+const shopRouter = require('./routes/shop')
 const bodyParser = require('body-parser')
 
 app.set('view engine', 'ejs')
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use('/', indexRouter)
 app.use('/food', foodRouter)
-app.use('/category', categoryRouter)
+app.use('/shop', shopRouter)
 
 
 const mongoose = require('mongoose')

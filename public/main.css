@@ -9,6 +9,7 @@
     z-index: inherit;
 }
 
+
 *:visited {
     color: rgb(33, 33, 33); 
 }
@@ -436,6 +437,158 @@ body {
     font-size: 1.6rem;
     font-family: 'Raleway', sans-serif;
 }
+
+/* New Food Spot */
+
+.newHeaderContainer {
+    font-size: 1.6rem;
+    margin-left: 3%;
+    font-weight: bold;
+    width: 500px;
+    height: 40px;   
+    line-height: 40px;
+    text-align: center;    
+    position:relative;
+}
+
+#newFoodSpot {
+    position: relative;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 6px 25px;
+    z-index: 1;
+    background-color: rgb(255, 255, 255);
+}
+
+.inputForNewFood {
+    z-index: 1;
+}
+
+.inputForNewShop {
+    display: none;
+}
+
+#newShop {
+    position: relative;
+    right: 25px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 5px 25px;
+    z-index: 0;
+    background-color: rgb(240, 240, 240);
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexCenterContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.inputFields {
+    width: 55%;
+    border: 1px solid black;
+    border-radius: 5%;
+    padding: 20px;
+    background-color: white;
+}
+
+.inputRow {    
+    margin-bottom: 20px;
+}
+
+.inputRow .labelHead {
+    display: inline-block;
+    line-height: 30px;
+    font-weight: bold;
+    vertical-align: center;
+    width: 100px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.centerLabelHead {
+    display: block;
+    line-height: 30px;
+    font-weight: bold;
+    width: 100%;
+    height: 30px;
+}
+
+.inputRow .textInput {
+    height: 28px;
+    width: 220px;
+    border-radius: 3%;
+    border: 1px solid rgba(0, 0, 0, 0.295);
+    padding-left: 10px;
+}
+
+.selectInput {
+    height: 30px;
+    width: 232px;
+    border-radius: 3%;
+    border: 1px solid rgba(0, 0, 0, 0.295);
+    padding-left: 10px;
+}
+
+.fileInput {
+    width: 400px;
+    height: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.295);
+    border-radius: 2%;
+}
+
+.eachType {
+    display: inline-flex;
+    width: 140px;
+    height: 40px;
+    margin: auto;
+    align-items: center;
+}
+
+.eachType label {
+    margin-left: 5px;
+}
+
+.newCancelButton {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(255, 90, 90);
+    border-radius: 3%;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.4);
+    font-weight:bold;
+}
+
+.newIntroduceButton {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(120, 255, 120);
+    border-radius: 3%;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.4);
+    font-weight:bold;
+}
+
+.newButtonRow {
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
 
 @media only screen and (max-width: 1400px) {
     .searchOption {

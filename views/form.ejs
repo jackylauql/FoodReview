@@ -1,47 +1,107 @@
-<div>
-    <label>Food</label>
-    <input type="text" name="name" value="<%=food.name%>" maxlength="22">
-</div>
-<div>
-    <label>Shop's Name</label>
-    <input type="text" name="shopName" value="<%=food.shopName%>" maxlength="30">
-</div>
-<div>
-    <label>Image</label>
-    <input type="file" name="image" class="filepond">
-</div>
-<div>
-    <fieldset>
-    <label>Address</label>
-    <input type="text" name="address" value="<%=food.address%>" maxlength="100">
-    <label>Area Code(First 2 Digits of Postal Code)</label>
-    <input type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="2" pattern="\d*" placeholder="Numbers Only">
-    </fieldset>
-</div>
-<div>
-    <label for="ratings">Ratings</label>
-    <select id="ratings" name="ratings" value="<%=food.ratings%>">
-        <option value="1 Star">1 Star</option>
-        <option value="2 Star">2 Star</option>
-        <option value="3 Star">3 Star</option>
-        <option value="4 Star">4 Star</option>
-        <option value="5 Star">5 Star</option>
-    </select>
-</div>
-<div>
-    <label>Price</label>
-    <input type="number" name="price" value="<%=food.price%>">
-</div>
+<div class="inputFields">
+    <form action="/new" method="POST">
+        <div class="inputForNewFood">
+            <div class="flexContainer"> 
+                <div class="inputRow">
+                    <label class="labelHead">Shop</label>
+                    <input class="textInput" type="text" name="shopName" value="<%=food.shopName%>" maxlength="30">
+                </div>   
+                <div class="inputRow">
+                    <label class="labelHead">Food</label>
+                    <input class="textInput" type="text" name="name" value="<%=food.name%>" maxlength="22">
+                </div>
+            </div>
+        
+            <div class="flexCenterContainer">
+                <div class="inputRow">
+                    <label class="centerLabelHead">Image</label>
+                    <input type="file" name="image" class="filepond fileInput">
+                </div>
+            </div>
+        
+            <div class="flexContainer">
+                <div class="inputRow">
+                    <label class="labelHead">Address</label>
+                    <input class="textInput" type="text" name="address" value="<%=food.address%>" maxlength="100">
+                </div>
+                <div class="inputRow">
+                    <label class="labelHead">Area Code</label>
+                    <input class="textInput" type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="2" pattern="\d*" placeholder="First 2 Postal Code Digits">
+                </div>
+            </div>
+        
+            <div class="flexContainer">
+                <div class="inputRow">
+                    <label class="labelHead" for="ratings">Ratings</label>
+                    <select id="ratings" name="ratings" value="<%=food.ratings%>" class="selectInput">
+                        <option value="1 Star">1 Star</option>
+                        <option value="2 Star">2 Star</option>
+                        <option value="3 Star">3 Star</option>
+                        <option value="4 Star">4 Star</option>
+                        <option value="5 Star">5 Star</option>
+                    </select>
+                </div>
+                <div class="inputRow">
+                    <label class="labelHead">Price</label>
+                    <input class="textInput" type="number" name="price" value="<%=food.price%>">
+                </div>
+            </div>
+            
+            <div class="flexCenterContainer">
+                <div class="inputRow">
+                    <label class="centerLabelHead">Types</label>
+                    <%- include('./partials/types.ejs', {food: food}) %>
+                </div>
+            </div>
+            <div>
+                <% if (food.errorMessage) { %>
+                    <p><%=food.errorMessage%></p>
+                    <% food.errors.forEach(error => { %>
+                        <p>- <%= error %></p>
+                    <% }) %>
+                <% } %>
+            </div>
+            <div class="newButtonRow">
+                <a href="/new"><button class="newCancelButton">Cancel</button></a>
+                <button type="submit" class="newIntroduceButton">Introduce!</button>
+            </div>
+        </div>
 
-<div>
-    <label>Types</label>
-    <%- include('./partials/types.ejs', {food: food}) %>
-</div>
-<div>
-    <% if (food.errorMessage) { %>
-        <p><%=food.errorMessage%></p>
-        <% food.errors.forEach(error => { %>
-            <p>- <%= error %></p>
-        <% }) %>
-    <% } %>
+    </form>
+
+    <form action="/newShop" method="POST">
+        <div class="inputForNewShop">
+            <div class="flexContainer"> 
+                <div class="inputRow">
+                    <label class="labelHead">Shop</label>
+                    <input class="textInput" type="text" name="shopName" value="<%=food.shopName%>" maxlength="30">
+                </div>   
+            </div>
+        
+            <div class="flexCenterContainer">
+                <div class="inputRow">
+                    <label class="centerLabelHead">Image</label>
+                    <input type="file" name="image" class="filepond fileInput">
+                </div>
+            </div>
+        
+            <div class="flexContainer">
+                <div class="inputRow">
+                    <label class="labelHead">Address</label>
+                    <input class="textInput" type="text" name="address" value="<%=food.address%>" maxlength="100">
+                </div>
+                <div class="inputRow">
+                    <label class="labelHead">Area Code</label>
+                    <input class="textInput" type="text" name="postalcode" value="<%=food.postalcode%>" maxlength="2" pattern="\d*" placeholder="First 2 Postal Code Digits">
+                </div>
+            </div>
+            <div class="newButtonRow">
+                <a href="/new"><button class="newCancelButton">Cancel</button></a>
+                <button type="submit" class="newIntroduceButton">Introduce!</button>
+            </div>
+        </div>
+
+    </form>
+
+    
 </div>

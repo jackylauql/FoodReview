@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Food = require('../models/food')
+const Shop = require('../models/shop')
 imageTypes = ['image/jpeg', 'image/png']
 
 router.get('/', async (req, res) =>{
@@ -32,6 +33,7 @@ router.get('/', async (req, res) =>{
 
 router.get('/new', (req, res) =>{
     const food = new Food()
+    const shop = new Shop()
     res.render('new', {food: food}) 
 })
 
@@ -45,7 +47,7 @@ router.post('/new', async (req, res) =>{
         price: req.body.price,
         type: req.body.type
     })    
-    saveImage(food, req.body.image)
+    
     try {
         if (food.postalcode > 82){
             throw "Invalid Postal Code"
@@ -53,6 +55,10 @@ router.post('/new', async (req, res) =>{
         if (food.type == ''){
             throw "Type is empty"
         }
+        if (req.body.image == null) {
+            throw "Image is required"
+        }
+        saveImage(food, req.body.image)
         const newFood = await food.save()
         res.redirect(`food/${newFood.id}`)
     } catch (err) {
@@ -78,6 +84,9 @@ router.post('/new', async (req, res) =>{
         if (food.type == '') {
             food.errors.push("Type is empty")
         }
+        if (req.body.image == '') {
+            food.errors.push("Image is required")
+        }
         res.render('new', {food: food})
     }
 })
@@ -89,5 +98,13 @@ const saveImage = (food, image) => {
         food.foodImageType = foodImage.type
     }
 }
+
+router.post('/newShop', async (req, res ) => {
+    const shop = new Shop({
+        shopName: req.body.shopName,
+        address: req.body.address,
+        postalcode: req.body.postalcode
+    })
+})
 
 module.exports = router

@@ -1,7 +1,9 @@
-<h2>New Food Spot!</h2>
+<script defer src="/javascripts/new.js"></script>
+<div class="newHeaderContainer">
+    <span id="newFoodSpot">New Food Spot!</span>
+    <span id="newShop">New Shop!</span>
+</div>
 
-<form action="/new" method="POST">
-    <%- include('./form.ejs') %>
-    <a href="/new">Cancel</a>
-    <button type="submit">Introduce!</button>
-</form>
+
+
+<%- include('./form.ejs') %>
