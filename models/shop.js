@@ -14,14 +14,24 @@ const shopSchema = new mongoose.Schema({
         required: true,
     },
     ratings: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    priceRange: {
         type: String,
         required: true,
         default: 'NA'
     },
-    price: {
+    minPrice: {
         type: Number,
         required: true,
-        default: 'NA'
+        default: 100
+    },
+    maxPrice: {
+        type: Number,
+        required: true,
+        default: 0
     },
     type: {
         type: Array,
@@ -40,7 +50,15 @@ const shopSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    food: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Food'
     }
 })
 
-module.exports = mongoose.model('Shop', shopchema)
+shopSchema.virtual('foodImagePath').get(function() {
+    return `data:${this.foodImageType};charset=utf-8;base64,${this.foodImage.toString('base64')}`
+})
+
+module.exports = mongoose.model('Shop', shopSchema)

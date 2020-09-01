@@ -6,19 +6,12 @@ const foodSchema = new mongoose.Schema({
         required: true
     },
     shopName: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    postalcode: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'Shop'
     },
     ratings: {
-        type: String,
+        type: Number,
         required: true
     },
     price: {

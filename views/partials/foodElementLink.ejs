@@ -1,7 +1,7 @@
 <a href="/food/<%=food.id%>">
     <div class="foodContentElement">
         <div class="foodContentText">
-            <span>Address: <%=food.address%></span>
+            <span>Address: <%=food.shopName.address%></span>
         </div>
         <div class="foodContentImage">
             <img src='<%=food.foodImagePath%>' height="200px" width="200px">
@@ -13,7 +13,7 @@
         </div>
         <div class="foodContentRow">
             <div class="foodContentShopName">
-                <p>from <span><%= food.shopName %></span></p>
+                <p>from <span><%= food.shopName.shopName %></span></p>
             </div>
         </div>
         <div class="foodContentRow">
@@ -22,7 +22,7 @@
             </div>
             <div class="foodContentRatings">
                 <span>
-                    <%- include('../partials/convertStars.ejs', {food: food})%>
+                    <%- include('../partials/convertStars.ejs', {item: food})%>
                 </span>
             </div>
         </div>

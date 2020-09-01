@@ -1,7 +1,9 @@
-<h2>Edit Food</h2>
+<div class="newLeftSide">
+    <div class="editHeaderContainer">
+        <span id="editFoodSpot">Edit Food</span>
+    </div>
 
-<form action="/food/<%=food.id%>?_method=PUT" method="POST">
-    <%- include('../form') %>
-    <a href="/food">Cancel</a>
-    <button type="submit">Update</button>
-</form>
+    
+        <%- include('../form') %>        
+    </form>
+</div>

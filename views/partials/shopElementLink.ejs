@@ -1,0 +1,25 @@
+<a href="/shop/<%=shop.id%>">
+    <div class="foodContentElement">
+        <div class="foodContentText">
+            <span>Address: <%=shop.address%></span>
+        </div>
+        <div class="foodContentImage">
+            <img src='<%=shop.foodImagePath%>' height="200px" width="200px">
+        </div>
+        <div class="foodContentRow">
+            <div class="foodContentName">
+                <p><%= shop.shopName %></p>
+            </div>
+        </div>
+        <div class="foodContentRow">
+            <div class="foodContentPrice">
+                <span>~ $<%=shop.priceRange%>/pax</span>
+            </div>
+            <div class="foodContentRatings">
+                <span>
+                    <%- include('../partials/convertStars.ejs', {item: shop})%>
+                </span>
+            </div>
+        </div>
+    </div>
+</a>

@@ -14,6 +14,21 @@
     color: rgb(33, 33, 33); 
 }
 
+.star img {
+    height: 18px;
+    width: 18px;
+}
+
+.partialStar {
+    display: inline-block;
+    position: absolute;
+    overflow: hidden;
+}
+
+#fillPixels {
+    display: none;
+}
+
 button:hover {
     cursor: pointer;
 }
@@ -276,8 +291,8 @@ body {
 }
 
 .foodContentShopName {
-    line-height: 38px;
-    vertical-align: middle;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .foodContentShopName span {
@@ -315,8 +330,8 @@ body {
     display: flex;
     width: 50%;
     height: 750px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .showFoodContent:hover .showFoodContentText {
@@ -412,19 +427,21 @@ body {
     flex-wrap: wrap;
 }
 
-.showShopContent {
-    display: flex;
-    flex-wrap: wrap;
-    width: 50%;
-    height: 750px;
-    justify-content: space-around;
-}
-
 /* Right Side */
+
+.showShopContent {
+    width: 50%;
+    
+}
 
 .sameShopFood {
     padding: 10px 20px;
+    height: 750px;
+    align-items: center;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
 }
 
 .sameShopFood img {
@@ -463,6 +480,14 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+#newFoodSpot:hover {
+    cursor: pointer;
+}
+
+#newShop:hover {
+    cursor: pointer;
+}
+
 .inputForNewFood {
     z-index: 1;
 }
@@ -499,9 +524,13 @@ body {
 .inputFields {
     width: 55%;
     border: 1px solid black;
-    border-radius: 5%;
+    border-radius: 20px;
     padding: 20px;
     background-color: white;
+}
+
+.newLeftSide {
+    padding-bottom: 50px;
 }
 
 .inputRow {    
@@ -550,15 +579,20 @@ body {
 }
 
 .eachType {
-    display: inline-flex;
     width: 140px;
     height: 40px;
+    text-align: center;
     margin: auto;
     align-items: center;
 }
 
 .eachType label {
     margin-left: 5px;
+}
+
+.typeContainer {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .newCancelButton {
@@ -588,7 +622,88 @@ body {
     width: 100%;
 }
 
+#editFoodSpot {
+    position: relative;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 6px 25px;
+    z-index: 1;
+    background-color: rgb(255, 255, 255);
+}
 
+.editHeaderContainer {
+    font-size: 1.6rem;
+    margin-left: 3%;
+    font-weight: bold;
+    height: 40px;   
+    line-height: 40px; 
+    position:relative;
+}
+
+/* Footer */
+
+footer {
+    background-color: rgb(39, 39, 39);
+    width: 100%;
+}
+
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+}
+
+.about h2 {
+    margin-bottom: 10px;
+    border-bottom: 3px solid rgb(221, 221, 221);
+}
+
+.about p {
+    font-size: 0.8rem;
+}
+
+.footerContent {
+    color: rgb(221, 221, 221);
+    width: 70%;
+    margin: auto;
+}
+
+.footerElements{
+    display: flex;
+    padding: 20px 0px;
+}
+
+.mediaLinks {
+    display: flex;
+    flex-grow: 1;
+    height: 50px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mediaLinks img {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+    transition: 0.2s;
+}
+
+.mediaLinks img:hover {
+    width: 40px;
+    height: 40px;
+}
+
+.copyright {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgb(165, 165, 165);
+    padding: 15px;
+    color: rgb(165, 165, 165)
+}
 
 @media only screen and (max-width: 1400px) {
     .searchOption {

@@ -1,10 +1,11 @@
 <% var allTypes = ['Buffet', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Western', 'Korean', 'Malay', 'Indian', 'Halal', 'Burgers', 'Hawker', 'Restaurant', 
 'Desserts', 'Local Delights', 'Pasta', 'Mexican', 'Cafes', 'Unique'] %>
 <% var index = 1 %>
+<div class="typeContainer">
 <% allTypes.forEach(type => { %>
     <div class="eachType">
         <input 
-        <% if (food.type.includes(type)){ %>
+        <% if (item.type.includes(type)){ %>
             checked 
         <% } %>
         type="checkbox" id="type<%=index%>" name="type" value="<%=type%>">
@@ -12,3 +13,4 @@
     </div>
     <% index += 1 %>
 <% }) %>
+</div>

@@ -1,1 +1,11 @@
-<p>This is shop page</p>
+<div class="contentHead">
+    <h2>All Shops</h2>
+</div>
+
+<%- include('../partials/filterSearchBar.ejs') %>
+
+<div class="allFoodContent">
+    <% shops.forEach(shop => { %>
+        <%- include('../partials/shopElementLink.ejs', {shop: shop}) %>
+    <% }) %>
+</div>

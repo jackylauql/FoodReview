@@ -1,0 +1,73 @@
+<script defer src="/javascripts/filter.js"></script>
+<div>
+    <h3>Looking for something?</h3>
+    <form class="searchBar">
+        <div class="searchOption">
+            <div class="searchOptionText">
+                <input type="text" name="keyword" placeholder="Filter by Keyword">
+            </div>
+        </div>
+        <div class="searchOption">
+            <div id="type" class="searchOptionToggle">
+                <label>Filter by Type</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>
+            </div>
+            <div class="searchOptionElements searchType">
+                <% var allTypes = ['Buffet', 'Japanese', 'Chinese', 'Thai', 'Vietnamese', 'Western', 'Korean', 'Malay', 'Indian', 'Halal', 'Burgers', 'Hawker', 'Restaurant', 
+                'Desserts', 'Local Delights', 'Pasta', 'Mexican', 'Cafes', 'Unique'] %>
+                <% var index = 1 %>
+                    <% allTypes.forEach(type => { %>
+                        <div class="searchOptionElement">
+                            <input type="checkbox" id="type<%=index%>" name="type" value="<%=type%>">
+                            <label for="type<%=index%>"><%=type%></label>
+                        </div>
+                        <% index += 1 %>
+                    <% }) %>
+            </div>
+        </div>
+        <div class="searchOption">
+            <div id="location" class="searchOptionToggle">
+                <label>Filter by Location</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>                
+            </div>
+            <div class="searchOptionElements searchLocation">
+                <%- include('../partials/locations.ejs') %>
+            </div>
+        </div>
+        <div class="searchOption">
+            <div id="ratings" class="searchOptionToggle">
+                <label>Filter by Ratings</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>  
+            </div>
+            <div class="searchOptionElements searchRatings">
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings1" name="ratings" value="1">
+                    <label for="ratings1">1 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings2" name="ratings" value="2">
+                    <label for="ratings2">2 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings3" name="ratings" value="3">
+                    <label for="ratings3">3 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings4" name="ratings" value="4">
+                    <label for="ratings4">4 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings5" name="ratings" value="5">
+                    <label for="ratings5">5 Star</label>
+                </div>
+            </div>
+        </div>
+        <button class="searchButton" type="submit"><img src="images/searchIcon.png"></button>
+    </form>
+</div>

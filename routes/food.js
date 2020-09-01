@@ -1,11 +1,12 @@
 const express = require('express');
 const Food = require('../models/food');
+const Shop = require('../models/shop');
 const router = express.Router()
 imageTypes = ['image/jpeg', 'image/png', 'image/gif']
 
 // All Food Spots
 router.get('/', async (req, res) =>{
-    let query = Food.find()
+    let query = Food.find().populate('shopName')
     if (req.query.keyword != null && req.query.keyword != '') {
         query = query.find({ $or: [ {name: {$regex: new RegExp(req.query.keyword, 'i')}}, {address: {$regex: new RegExp(req.query.keyword, 'i')}}] })
     }
@@ -77,13 +78,15 @@ router.get('/', async (req, res) =>{
 
 // View individual Food Spot
 router.get('/:id', async (req, res) => {
-    let query = Food.find()    
-    const food = await Food.findById(req.params.id).exec()
-    query = query.find( {$and: [
-        {shopName: {$regex: new RegExp(food.shopName, 'i')}},
-        {name: {$ne: food.name}}
-    ]}).limit(4)
-    const sameShop = await query.exec()
+    const food = await Food.findById(req.params.id).populate('shopName').exec()
+    // foodQuery = foodQuery.find( {$and: [
+    //     {shopName: {$regex: new RegExp(food.shopName, 'i')}},
+    //     {name: {$ne: food.name}}
+    // ]}).limit(4)
+
+    const sameShopQuery = Food.find({shopName: food.shopName.id}).populate('shopName').limit(4)
+    const sameShop = await sameShopQuery.exec()
+
     try {
         res.render('food/show', {
             food: food,
@@ -97,9 +100,13 @@ router.get('/:id', async (req, res) => {
 
 // Edit Food Spot
 router.get('/:id/edit', async (req, res) =>{
-    const food = await Food.findById(req.params.id).exec()
+    const food = await Food.findById(req.params.id).populate('shopName').exec()
+    const shops = await Shop.find({})
     res.render('food/edit', {
-        food: food
+        food: food,
+        shops: shops,
+        form: 'food',
+        action: 'edit'
     })
 })
 
@@ -108,16 +115,14 @@ router.put('/:id', async (req, res) =>{
 
     food.name = req.body.name
     food.shopName = req.body.shopName
-    food.address = req.body.address
     food.ratings = req.body.ratings
     food.price = req.body.price
     food.type = req.body.type
     saveImage(food, req.body.image)
     try {
-        if (food.name == "" || food.shopName == "" || food.address == "" || food.postalcode == "" || food.postalcode > 80 || food.price == null || food.type == null){
+        if (food.name == "" || food.price == null || food.type == null){
             throw "Error updating Food Spot"
         }
-
         food.save()   
         res.redirect(`/food/${food.id}`)        
     } catch (err) {
@@ -129,22 +134,19 @@ router.put('/:id', async (req, res) =>{
         if (food.shopName == "") {
             food.errors.push("Shop Name is empty")
         }
-        if (food.address == "") {
-            food.errors.push("Address is empty")
-        }
-        if (food.postalcode == "") {
-            food.errors.push("Postal Code is empty")
-        } else if (food.postalcode > 80) {
-            food.errors.push(err)
-        }
         if (food.price == null) {
             food.errors.push("Price is empty")
         }
         if (food.type == null) {
             food.errors.push("Type is empty")
         }
-
-        res.render('food/edit', {food: food})
+        const shops = await Shop.find({})
+        res.render('food/edit', {
+            food: food,
+            shops: shops,
+            form: 'food',
+            action: 'edit'
+        })
     }
 })
 

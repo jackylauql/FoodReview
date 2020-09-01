@@ -1,31 +1,36 @@
-<% if (food.ratings == '1 Star') { %>
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-<% } else if (food.ratings == '2 Star') { %>
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-<% } else if (food.ratings == '3 Star') { %>
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-<% } else if (food.ratings == '4 Star') { %>
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/emptyStar.png" height="18px" width="18px">
-<% } else { %>
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-    <img src="/images/star.png" height="18px" width="18px">
-<% } %>
+<% var fullStars = Math.floor(item.ratings) %>
+<% var fillPercent = Math.floor((item.ratings - fullStars) * 100) %>
+<% var fillPixels = Math.floor((18 / 100) * fillPercent) %>
+
+<script> 
+    var partialStar = document.getElementsByClassName('partialStar')[0]
+    var pixels = document.getElementById('fillPixels')
+    partialStar.style.width = pixels.innerHTML + 'px'
+</script>
+
+<% var index = 0 %>
+<div class="star">
+    <span id='fillPixels'><%=fillPixels%></span>
+    <% if (fullStars == 5) { %>
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+        <img src="/images/star.png">
+    <% } else { %>
+        <% while (index < fullStars) { %>
+            <img src="/images/star.png">
+            <% index = index + 1 %>
+        <% } %>
+        <div class="partialStar" >
+            <img src="/images/star.png">
+        </div>
+        <img src="/images/emptyStar.png">
+        <% index = index + 1 %>
+        <% while (index < 5) { %>
+            <img src="/images/emptyStar.png">
+            <% index = index + 1 %>
+        <% } %>
+    <% } %>
+</div>
+

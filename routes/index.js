@@ -11,7 +11,7 @@ router.get('/', async (req, res) =>{
     food.sort((a, b) => (a.date > b.date) ? 1 : -1)
     
     recommendationFood = Food.find()
-    recommendationQuery = await recommendationFood.find({ $or: [{ratings : "5 Star"}, {ratings : "4 Star"}]}).exec()
+    recommendationQuery = await recommendationFood.find({ $or: [{ratings : 5}, {ratings : 4}]}).exec()
     randomIndexArray = []
     
     while (randomIndexArray.length < 4 && randomIndexArray.length < recommendationQuery.length) {
@@ -31,23 +31,42 @@ router.get('/', async (req, res) =>{
 
 // New Food Spot
 
-router.get('/new', (req, res) =>{
+router.get('/new', async (req, res) =>{
     const food = new Food()
     const shop = new Shop()
-    res.render('new', {food: food}) 
+    const shops = await Shop.find({})
+    res.render('new', {
+        food: food, 
+        shop: shop, 
+        shops: shops, 
+        form:'food', 
+        action: 'new'
+    }) 
 })
 
 router.post('/new', async (req, res) =>{
+
+    // Create new Food
     const food = new Food({
         name: req.body.name,
         shopName: req.body.shopName,
-        address: req.body.address,
-        postalcode: req.body.postalcode,
         ratings: req.body.ratings,
         price: req.body.price,
         type: req.body.type
-    })    
+    })
     
+    // Save new Food in Shop
+    let shop = await Shop.findById(req.body.shopName)
+    shop.food.push(food)
+    if (shop.minPrice > food.price) {
+        shop.minPrice = food.price
+    }
+    if (shop.maxPrice < food.price) {
+        shop.maxPrice = food.price
+    }
+    shop.averagePrice = `${shop.minPrice} to ${shop.maxPrice}`
+
+    // Save database
     try {
         if (food.postalcode > 82){
             throw "Invalid Postal Code"
@@ -60,23 +79,16 @@ router.post('/new', async (req, res) =>{
         }
         saveImage(food, req.body.image)
         const newFood = await food.save()
+        await shop.save()
+        
         res.redirect(`food/${newFood.id}`)
+
+    // Push any error messages
     } catch (err) {
         food.errorMessage = "Error Creating New Food Spot"
         food.errors = []
         if (food.name == "") {
             food.errors.push("Name is empty")
-        }
-        if (food.shopName == "") {
-            food.errors.push("Shop Name is empty")
-        }
-        if (food.address == "") {
-            food.errors.push("Address is empty")
-        }
-        if (food.postalcode == "") {
-            food.errors.push("Postal Code is empty")
-        } else if (food.postalcode > 80) {
-            food.errors.push(err)
         }
         if (food.price == null) {
             food.errors.push("Price is empty")
@@ -87,8 +99,30 @@ router.post('/new', async (req, res) =>{
         if (req.body.image == '') {
             food.errors.push("Image is required")
         }
-        res.render('new', {food: food})
+        const shops = await Shop.find({})
+        res.render('new', {
+            food: food, 
+            shops: shops, 
+            form: 'food',
+            action: 'new'
+        })
     }
+})
+
+router.post('/newShop', async (req, res ) => {
+    const shop = new Shop({
+        shopName: req.body.shopName,
+        address: req.body.address,
+        postalcode: req.body.postalcode
+    })
+    try {
+        saveImage(shop, req.body.image)
+        const newShop = await shop.save()
+        res.redirect(`shop/${newShop.id}`)
+    } catch {
+        res.send('fail')
+    }
+    
 })
 
 const saveImage = (food, image) => {
@@ -99,12 +133,14 @@ const saveImage = (food, image) => {
     }
 }
 
-router.post('/newShop', async (req, res ) => {
-    const shop = new Shop({
-        shopName: req.body.shopName,
-        address: req.body.address,
-        postalcode: req.body.postalcode
-    })
-})
+
+const recalculateAverage = (shop, food) => {
+    const numOfFood = shop.food.length
+    let totalRatings = shop.ratings + food.ratings
+    const averageRating = (Math.round((totalRatings / numOfFood) * 10) / 10)
+    shop.ratings = averageRating
+    
+}
+
 
 module.exports = router

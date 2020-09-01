@@ -4,11 +4,11 @@
         <div class="showFoodContent">
             <div class="header">
                 <div>
-                    <h2><%=food.name%></h2>
+                    <h2><%=shop.shopName%></h2>
                 </div>
                 <div class="showFoodContentText">
                     <span>
-                        <a href="/food/<%=food.id%>/edit">
+                        <a href="/shop/<%=shop.id%>/edit">
                             <button class="edit">Edit</button>
                         </a>
                     </span>
@@ -18,7 +18,7 @@
                     <div class="deleteConfirmationText">This will permanently delete the item. Are you sure?</div>
                     <div class="deleteConfirmationBox">
                         <span>
-                            <form action="/food/<%=food.id%>?_method=DELETE" method="POST">                           
+                            <form action="/shop/<%=shop.id%>?_method=DELETE" method="POST">                           
                                 <button class="deleteYes" type="submit">Yes</button>
                             </form>
                         </span>
@@ -28,53 +28,40 @@
                     </div>
                 </div>
                 <div>
-                    <img src='<%=food.foodImagePath%>' height='400px' width='400px'>
+                    <img src='<%=shop.foodImagePath%>' height='400px' width='400px'>
                 </div>
-                <div class="foodContentShopName">
-                    <p>from <span><%= food.shopName.shopName %></span></p>
-                </div>
+
             </div>
             <div class="body">
                 <div class="flexRow">
                     <p>Address: </p>
-                    <span><%= food.address %></span>
+                    <span><%= shop.address %></span>
                 </div>
                 <div class="flexRow">
                     <p>Ratings: </p>
-                    <span><%-include('../partials/convertStars.ejs', {item: food}) %></span>
+                    <span><%-include('../partials/convertStars.ejs', {item: shop}) %></span>
                 </div>
                 <div class="flexRow">
                     <p>Price: </p>
-                    <span>~ $<%= food.price %>/pax</span>
+                    <span>~ $<%= shop.priceRange %>/pax</span>
                 </div>
                 <div class="flexRow">
                     <p>Tags: </p>
                     <span>
-                        <% food.type.forEach(type => { %>
+                        <% shop.type.forEach(type => { %>
                             <%=type%> 
                         <% }) %>
                     </span>
                 </div>
                 <div class="flexRow">
                     <p>Date added: </p>
-                    <% var foodDate = food.date.toDateString().split(' ') %>
-                    <% foodDate = `${foodDate[1]} ${foodDate[2]} ${foodDate[3]}`%>
-                    <span><%=foodDate%></span>
+                    <% var shopDate = shop.date.toDateString().split(' ') %>
+                    <% shopDate = `${shopDate[1]} ${shopDate[2]} ${shopDate[3]}`%>
+                    <span><%=shopDate%></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="showShopContent">
-        <div class="shopName">
-            <h2>Other food items from: <%=food.shopName.shopName%></h2>
-        </div>
-        <div class="sameShopFood">
-        <% sameShop.forEach(sameShopFood => { %>
-            
-            <%- include('../partials/foodElementLink.ejs', {food: sameShopFood}) %>
-            
-        <% }) %>
-        </div>
-    </div>
+
 </div>

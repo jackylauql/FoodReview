@@ -1,0 +1,30 @@
+<div class="inputForNewShop">
+    <div class="flexContainer"> 
+        <div class="inputRow">
+            <label class="labelHead">Shop</label>
+            <input class="textInput" type="text" name="shopName" value="<%=shop.shopName%>" maxlength="30">
+        </div>   
+    </div>
+
+    <div class="flexCenterContainer">
+        <div class="inputRow">
+            <label class="centerLabelHead">Image</label>
+            <input type="file" name="image" class="filepond fileInput">
+        </div>
+    </div>
+
+    <div class="flexContainer">
+        <div class="inputRow">
+            <label class="labelHead">Address</label>
+            <input class="textInput" type="text" name="address" value="<%=shop.address%>" maxlength="100">
+        </div>
+        <div class="inputRow">
+            <label class="labelHead">Area Code</label>
+            <input class="textInput" type="text" name="postalcode" value="<%=shop.postalcode%>" maxlength="2" pattern="\d*" placeholder="First 2 Postal Code Digits">
+        </div>
+    </div>
+    <div class="newButtonRow">
+        <a href="/new"><button class="newCancelButton">Cancel</button></a>
+        <button type="submit" class="newIntroduceButton">Introduce!</button>
+    </div>
+</div>

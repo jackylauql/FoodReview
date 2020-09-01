@@ -1,0 +1,91 @@
+<div class="inputForNewFood">
+    <div class="flexContainer"> 
+        <div class="inputRow">
+            <label for="shopName" class="labelHead">Shop</label>
+            <select id="shopName" name="shopName" class="selectInput">
+            <% shops.forEach(shop => { %>
+                <% if (action == 'edit') { %>
+                    <% if (food.shopName.shopName === shop.shopName || food.shopName === shop.shopName) { %>
+                        <option selected value="<%=shop.id%>"><%=shop.shopName%></option>    
+                    <% } else { %>
+                        <option value="<%=shop.id%>"><%=shop.shopName%></option>
+                    <% } %>
+                <% } else { %>
+                    <option value="<%=shop.id%>"><%=shop.shopName%></option>
+                <% } %>
+            <% }) %>
+            </select>
+        </div>   
+        <div class="inputRow">
+            <label class="labelHead">Food</label>
+            <input class="textInput" type="text" name="name" value="<%=food.name%>" maxlength="22">
+        </div>
+    </div>
+
+    <div class="flexCenterContainer">
+        <div class="inputRow">
+            <label class="centerLabelHead">Image</label>
+            <input type="file" name="image" class="filepond fileInput">
+        </div>
+    </div>
+
+    <div class="flexContainer">
+        <div class="inputRow">
+            <label class="labelHead" for="ratings">Rating</label>
+            <select id="ratings" name="ratings" value="<%=food.ratings%>" class="selectInput">
+                <%if (food.ratings == 1) { %>
+                    <option selected value=1>1 Star</option>
+                <% } else { %>
+                    <option value=1>1 Star</option>
+                <% } %>
+
+                <%if (food.ratings == 2) { %>
+                    <option selected value=2>2 Star</option>
+                <% } else { %>
+                    <option value=2>2 Star</option>
+                <% } %>
+
+                <%if (food.ratings == 3) { %>
+                    <option selected value=3>3 Star</option>
+                <% } else { %>
+                    <option value=3>3 Star</option>
+                <% } %>
+
+                <%if (food.ratings == 4) { %>
+                    <option selected value=4>4 Star</option>
+                <% } else { %>
+                    <option value=4>4 Star</option>
+                <% } %>
+
+                <%if (food.ratings == 5) { %>
+                    <option selected value=5>5 Star</option>
+                <% } else { %>
+                    <option value=5>5 Star</option>
+                <% } %>
+            </select>
+        </div>
+        <div class="inputRow">
+            <label class="labelHead">Price</label>
+            <input class="textInput" type="number" name="price" value="<%=food.price%>">
+        </div>
+    </div>
+    
+    <div class="flexCenterContainer">
+        <div class="inputRow">
+            <label class="centerLabelHead">Types</label>
+            <%- include('./types.ejs', {item: food}) %>
+        </div>
+    </div>
+    <div>
+        <% if (food.errorMessage) { %>
+            <p><%=food.errorMessage%></p>
+            <% food.errors.forEach(error => { %>
+                <p>- <%= error %></p>
+            <% }) %>
+        <% } %>
+    </div>
+    <div class="newButtonRow">
+        <a href="/new"><button class="newCancelButton">Cancel</button></a>
+        <button type="submit" class="newIntroduceButton">Introduce!</button>
+    </div>
+</div>    
