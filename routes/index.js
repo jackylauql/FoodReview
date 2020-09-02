@@ -59,6 +59,12 @@ router.post('/new', async (req, res) =>{
     // Save new Food in Shop
     let shop = await Shop.findById(req.body.shopName)
     shop.food.push(food.id)
+
+        // Calculate New Rating
+    shop.allRatings.push(food.ratings)
+    shop.ratings = calculateAverage(shop.allRatings)
+
+        // Calculate new Price Range
     if (shop.minPrice > food.price) {
         shop.minPrice = food.price
     }
@@ -66,6 +72,14 @@ router.post('/new', async (req, res) =>{
         shop.maxPrice = food.price
     }
     shop.priceRange = `${shop.minPrice} to ${shop.maxPrice}`
+
+        // Add new types (if any)
+
+    food.type.forEach(type => {
+        if (shop.type.includes(type) == false) {
+            shop.type.push(type)
+        }
+    })
 
     // Save database
     try {
@@ -81,8 +95,6 @@ router.post('/new', async (req, res) =>{
         saveImage(food, req.body.image)
         const newFood = await food.save()
         await shop.save()
-        console.log(shop)
-        console.log(shop.food)
         res.redirect(`food/${newFood.id}`)
 
     // Push any error messages
@@ -138,12 +150,16 @@ const saveImage = (food, image) => {
 }
 
 
-const recalculateAverage = (shop, food) => {
-    const numOfFood = shop.food.length
-    let totalRatings = shop.ratings + food.ratings
-    const averageRating = (Math.round((totalRatings / numOfFood) * 10) / 10)
-    shop.ratings = averageRating
-    
+const calculateAverage = (array) => {
+    var index = 0
+    var totalRatings = 0
+    while (index < array.length) {
+        totalRatings += array[index]
+        index = index + 1
+    }
+
+    var averageRating = Math.floor((totalRatings / array.length) * 10) / 10
+    return averageRating
 }
 
 

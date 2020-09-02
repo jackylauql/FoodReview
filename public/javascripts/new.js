@@ -63,7 +63,7 @@ newFoodSpotButton.addEventListener('click', () => {
     inputForNewFood.style.display = 'block'
     newFoodSpotButton.style.padding = '6px 25px'
     newFoodSpotButton.style.backgroundColor = 'rgb(255, 255, 255)'
-    newFoodSpotButton.style.zIndex = '1'
+    newFoodSpotButton.style.zIndex = '3'
 
     rightSide.style.animationName = 'slideFromLeft'
     rightSide.style.right = '0px'
@@ -78,7 +78,7 @@ newShopButton.addEventListener('click', () => {
     inputForNewShop.style.display = 'block'
     newShopButton.style.padding = '6px 25px'
     newShopButton.style.backgroundColor = 'rgb(255, 255, 255)'
-    newShopButton.style.zIndex = '1'
+    newShopButton.style.zIndex = '3'
 
     rightSide.style.animationName = 'slideFromRight'
     rightSide.style.right = '500px'

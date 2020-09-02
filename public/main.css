@@ -78,7 +78,7 @@
     overflow: hidden;
 }
 
-#fillPixels {
+.fillPixels {
     display: none;
 }
 
@@ -146,7 +146,7 @@ body {
 }
 
 .headerUnderline {
-    padding-top: 10px;
+    padding-top: 1%;
     width: 70px;
     border-bottom: 4px solid rgb(27, 182, 135);
     margin: auto;
@@ -220,6 +220,7 @@ body {
     flex-basis: 23%;
     height: 40px;
     line-height: 40px;
+    background-color: white;
 }
 
 .searchOptionText {
@@ -251,10 +252,6 @@ body {
     padding-right: 20px;
 }
 
-.searchOption:hover {
-    cursor: pointer;
-}
-
 .searchButton {
     background-color: rgba(27, 182, 135, 0.925);
     flex-grow: 2;
@@ -277,7 +274,7 @@ body {
     z-index: 3;
     background-color: white;
     padding: 8px 6px;
-    width: 85%;
+    width: 95%;
     margin: auto;
     justify-content: flex-start;
 }
@@ -287,6 +284,18 @@ body {
     padding: 0px 5px;
     font-weight: bold;
     font-size: 0.8rem;
+}
+
+.locationSectors {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.regionHeader {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
 }
 
 /* Food Content */
@@ -529,7 +538,7 @@ body {
     border-left: 1px solid rgb(158, 158, 158);
     border-right: 1px solid rgb(158, 158, 158);
     padding: 6px 25px;
-    z-index: 1;
+    z-index: 3;
     background-color: rgb(255, 255, 255);
 }
 

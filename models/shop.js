@@ -19,6 +19,10 @@ const shopSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    allRatings: {
+        type: Array,  
+        default: []
+    },
     priceRange: {
         type: String,
         required: true,
@@ -37,7 +41,7 @@ const shopSchema = new mongoose.Schema({
     type: {
         type: Array,
         required: true,
-        default: 'NA'
+        default: []
     },
     foodImage: {
         type: Buffer,

@@ -2,9 +2,8 @@
 <% var fillPercent = Math.floor((item.ratings - fullStars) * 100) %>
 <% var fillPixels = Math.floor((18 / 100) * fillPercent) %>
 
-<% var index = 0 %>
+<% var index = 1 %>
 <div class="star">
-    <span id='fillPixels'><%=fillPixels%></span>
     <% if (fullStars == 5) { %>
         <img src="/images/star.png">
         <img src="/images/star.png">
@@ -12,22 +11,30 @@
         <img src="/images/star.png">
         <img src="/images/star.png">
     <% } else { %>
-        <% while (index < fullStars) { %>
+        <% while (index <= fullStars) { %>
             <img src="/images/star.png">
             <% index = index + 1 %>
         <% } %>
+        <span class='fillPixels'><%=fillPixels%></span>
         <div class="partialStar" >
             <img src="/images/star.png">
         </div>
         <img src="/images/emptyStar.png">
         <% index = index + 1 %>
-        <% while (index < 5) { %>
+        <% while (index <= 5) { %>
             <img src="/images/emptyStar.png">
             <% index = index + 1 %>
         <% } %>
-        <script> 
-            var partialStar = document.getElementsByClassName('partialStar')[0]
-            var pixels = document.getElementById('fillPixels')
+        <script>
+            var partialStar = document.getElementsByClassName('partialStar')
+            var starIndex = 0
+            while (starIndex < partialStar.length) {
+                var pixels = document.getElementsByClassName('fillPixels')[starIndex]
+                var star = partialStar[starIndex]
+                star.style.width = pixels.innerHTML + 'px'
+                starIndex = starIndex + 1
+            }
+
             partialStar.style.width = pixels.innerHTML + 'px'
         </script>
     <% } %>

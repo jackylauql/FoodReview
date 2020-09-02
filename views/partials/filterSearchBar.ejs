@@ -8,6 +8,36 @@
             </div>
         </div>
         <div class="searchOption">
+            <div id="ratings" class="searchOptionToggle">
+                <label>Filter by Ratings</label>
+                <div class="shiftImageToRight">
+                    <img src="/images/arrowDown.png">
+                </div>  
+            </div>
+            <div class="searchOptionElements searchRatings">
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings1" name="ratings" value="1">
+                    <label for="ratings1">1 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings2" name="ratings" value="2">
+                    <label for="ratings2">2 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings3" name="ratings" value="3">
+                    <label for="ratings3">3 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings4" name="ratings" value="4">
+                    <label for="ratings4">4 Star</label>
+                </div>
+                <div class="searchOptionElement">
+                    <input type="checkbox" id="ratings5" name="ratings" value="5">
+                    <label for="ratings5">5 Star</label>
+                </div>
+            </div>
+        </div>
+        <div class="searchOption">
             <div id="type" class="searchOptionToggle">
                 <label>Filter by Type</label>
                 <div class="shiftImageToRight">
@@ -36,36 +66,6 @@
             </div>
             <div class="searchOptionElements searchLocation">
                 <%- include('../partials/locations.ejs') %>
-            </div>
-        </div>
-        <div class="searchOption">
-            <div id="ratings" class="searchOptionToggle">
-                <label>Filter by Ratings</label>
-                <div class="shiftImageToRight">
-                    <img src="/images/arrowDown.png">
-                </div>  
-            </div>
-            <div class="searchOptionElements searchRatings">
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="ratings1" name="ratings" value="1">
-                    <label for="ratings1">1 Star</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="ratings2" name="ratings" value="2">
-                    <label for="ratings2">2 Star</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="ratings3" name="ratings" value="3">
-                    <label for="ratings3">3 Star</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="ratings4" name="ratings" value="4">
-                    <label for="ratings4">4 Star</label>
-                </div>
-                <div class="searchOptionElement">
-                    <input type="checkbox" id="ratings5" name="ratings" value="5">
-                    <label for="ratings5">5 Star</label>
-                </div>
             </div>
         </div>
         <button class="searchButton" type="submit"><img src="images/searchIcon.png"></button>

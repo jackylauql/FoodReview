@@ -84,7 +84,7 @@ router.get('/:id', async (req, res) => {
     //     {name: {$ne: food.name}}
     // ]}).limit(4)
 
-    const sameShopQuery = Food.find({shopName: food.shopName.id}).populate('shopName').limit(4)
+    const sameShopQuery = Food.find( {$and: [{shopName: food.shopName.id}, {_id: {$ne: food.id}}]}).populate('shopName').limit(4)
     const sameShop = await sameShopQuery.exec()
 
     try {
@@ -162,10 +162,30 @@ const saveImage = (food, image) => {
 // Delete Food Spot
 router.delete('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
+    let shop = await Shop.findById(food.shopName)
+    for (let i = 0; i < shop.allRatings.length; i++) {
+        if (allRatings[i] == food.ratings) {
+            allRatings.splice(i, 1)
+            break
+        }
+    }
+    shop.ratings = calculateAverage(shop.allRatings)
     await food.remove()
     res.redirect('/food')
 })
 
+
+const calculateAverage = (array) => {
+    var index = 0
+    var totalRatings = 0
+    while (index < array.length) {
+        totalRatings += array[index]
+        index = index + 1
+    }
+
+    var averageRating = Math.floor((totalRatings / array.length) * 10) / 10
+    return averageRating
+}
 
 
 module.exports = router
