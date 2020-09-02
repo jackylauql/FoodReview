@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
     }
 } )
 
-// Edit Shop Spot
+// Edit Shop
 router.get('/:id/edit', async (req, res) =>{
     const shop = await Shop.findById(req.params.id).populate('food').exec()
     const shops = await Shop.find({})
@@ -29,6 +29,17 @@ router.get('/:id/edit', async (req, res) =>{
         form: 'shop',
         action: 'edit'
     })
+})
+
+// Delete Shop
+router.delete('/:id', async (req, res) =>{
+    let shop = await Shop.findById(req.params.id)
+    try {
+        await shop.remove()
+        res.redirect('/shop')
+    } catch {
+        res.redirect(`${shop.id}`)
+    }
 })
 
 module.exports = router

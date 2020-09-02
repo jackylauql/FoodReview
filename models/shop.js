@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Food = require('./shop.js')
 
 const shopSchema = new mongoose.Schema({
     shopName: {
@@ -51,11 +52,13 @@ const shopSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    food: {
-        type: [mongoose.Schema.Types.ObjectId],
+    food: [{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Food'
-    }
+    }]
 })
+
+
 
 shopSchema.virtual('foodImagePath').get(function() {
     return `data:${this.foodImageType};charset=utf-8;base64,${this.foodImage.toString('base64')}`

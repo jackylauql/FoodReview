@@ -9,9 +9,62 @@
     z-index: inherit;
 }
 
-
 *:visited {
     color: rgb(33, 33, 33); 
+}
+
+@keyframes newTopDown {
+    from {
+        height: 0px;
+    }
+    
+    to {
+        height: 105px;
+    }
+}
+
+@keyframes newBottomUp {
+    from {
+        height: 105px;
+    }
+    
+    to {
+        height: 0px;
+    }
+}
+
+@keyframes bottomDownDisappear {
+    from {
+        opacity: 1;
+        top: 0;
+        display: block;
+    }
+
+    to {
+        opacity: 0;
+        top: 100px;
+        display: none;
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        right: 500px;
+    }
+
+    to {
+        right: 0px;
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        right: 0px;
+    }
+
+    to {
+        right: 500px;
+    }
 }
 
 .star img {
@@ -472,9 +525,9 @@ body {
     position: relative;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-top: 1px solid rgb(158, 158, 158);
+    border-left: 1px solid rgb(158, 158, 158);
+    border-right: 1px solid rgb(158, 158, 158);
     padding: 6px 25px;
     z-index: 1;
     background-color: rgb(255, 255, 255);
@@ -501,9 +554,9 @@ body {
     right: 25px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-top: 1px solid rgb(158, 158, 158);
+    border-left: 1px solid rgb(158, 158, 158);
+    border-right: 1px solid rgb(158, 158, 158);;
     padding: 5px 25px;
     z-index: 0;
     background-color: rgb(240, 240, 240);
@@ -521,12 +574,106 @@ body {
     text-align: center;
 }
 
+.formContainer {
+    display: flex;
+    width: 100%;
+    height: 880px;
+}
+
 .inputFields {
+    position:relative;
+    z-index: 2;
     width: 55%;
-    border: 1px solid black;
+    border: 1px solid rgb(61, 61, 61, 0.432);
+    box-shadow: 2px 10px 10px rgba(61, 61, 61, 0.432);
     border-radius: 20px;
     padding: 20px;
     background-color: white;
+}
+
+.displayShopItems {    
+    position: relative;
+    width: 30%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    top: 5%;
+    height: 85%;
+    padding: 20px 40px;
+    border-top: 1px solid rgb(61, 61, 61, 0.432);
+    border-bottom: 1px solid rgb(61, 61, 61, 0.432);
+    border-right: 1px solid rgb(61, 61, 61, 0.432);
+    box-shadow: 5px 10px 10px rgba(61, 61, 61, 0.432);
+    background-color: white;
+    animation-name: slideFromLeft;
+    animation-duration: 1s;
+}
+
+.displayShopItems h2 {
+    margin-bottom: 10px;
+}
+
+.shopFoodContent {
+    display: none;
+    position: relative;
+    animation-duration: 1s;
+    right: 350px;
+    z-index: 1;
+}
+
+.shopItemRow {
+    position: relative;
+    display: flex;
+    margin-bottom: 5px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: center;
+    padding-left: 10px;
+    box-shadow: 0px 2px 4px rgba(61, 61, 61, 0.432);
+    z-index: 2;
+}
+
+.shopItemRow:hover {
+    background-color: rgba(157, 223, 250);
+    cursor: pointer;
+}
+
+.shopItemRow span {
+    width: 40%;
+}
+
+.shopItemRowStars {
+    width: 110px;
+    margin-left: 20px;
+}
+
+.shopItemRowStars img {
+    margin-top: 5px;
+}
+
+.shopItemRowArrowDown {
+    flex-grow: 1;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.shopItemRowArrowDown img {
+    width: auto;
+    height: 8px;
+}
+
+.newShowFoodContent {
+    display: flex;
+    position: relative;
+    align-items: center;
+    animation-duration: 0.3s;
+    z-index: 1;
+    height: 0px;
+    overflow: hidden;
+}
+
+.newShowFoodContent .body {
+    flex-grow: 1;
+    margin-left: 5px;    
 }
 
 .newLeftSide {

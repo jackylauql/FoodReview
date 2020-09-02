@@ -34,7 +34,8 @@ router.get('/', async (req, res) =>{
 router.get('/new', async (req, res) =>{
     const food = new Food()
     const shop = new Shop()
-    const shops = await Shop.find({})
+    const shopsQuery = Shop.find({}).populate('food')
+    const shops = await shopsQuery.exec()
     res.render('new', {
         food: food, 
         shop: shop, 
@@ -57,14 +58,14 @@ router.post('/new', async (req, res) =>{
     
     // Save new Food in Shop
     let shop = await Shop.findById(req.body.shopName)
-    shop.food.push(food)
+    shop.food.push(food.id)
     if (shop.minPrice > food.price) {
         shop.minPrice = food.price
     }
     if (shop.maxPrice < food.price) {
         shop.maxPrice = food.price
     }
-    shop.averagePrice = `${shop.minPrice} to ${shop.maxPrice}`
+    shop.priceRange = `${shop.minPrice} to ${shop.maxPrice}`
 
     // Save database
     try {
@@ -80,7 +81,8 @@ router.post('/new', async (req, res) =>{
         saveImage(food, req.body.image)
         const newFood = await food.save()
         await shop.save()
-        
+        console.log(shop)
+        console.log(shop.food)
         res.redirect(`food/${newFood.id}`)
 
     // Push any error messages
@@ -100,8 +102,10 @@ router.post('/new', async (req, res) =>{
             food.errors.push("Image is required")
         }
         const shops = await Shop.find({})
+        const shop = new Shop()
         res.render('new', {
             food: food, 
+            shop: shop,
             shops: shops, 
             form: 'food',
             action: 'new'

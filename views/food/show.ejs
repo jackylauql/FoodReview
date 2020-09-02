@@ -1,68 +1,7 @@
 <script defer src="/javascripts/show.js"></script>
 <div class="showContent">
     <div class="showFoodContentContainer">
-        <div class="showFoodContent">
-            <div class="header">
-                <div>
-                    <h2><%=food.name%></h2>
-                </div>
-                <div class="showFoodContentText">
-                    <span>
-                        <a href="/food/<%=food.id%>/edit">
-                            <button class="edit">Edit</button>
-                        </a>
-                    </span>
-                    <span>
-                        <button class="delete">Delete</button>
-                    </span>
-                    <div class="deleteConfirmationText">This will permanently delete the item. Are you sure?</div>
-                    <div class="deleteConfirmationBox">
-                        <span>
-                            <form action="/food/<%=food.id%>?_method=DELETE" method="POST">                           
-                                <button class="deleteYes" type="submit">Yes</button>
-                            </form>
-                        </span>
-                        <span>
-                            <button class="deleteNo">No</button>
-                        </span>
-                    </div>
-                </div>
-                <div>
-                    <img src='<%=food.foodImagePath%>' height='400px' width='400px'>
-                </div>
-                <div class="foodContentShopName">
-                    <p>from <span><%= food.shopName.shopName %></span></p>
-                </div>
-            </div>
-            <div class="body">
-                <div class="flexRow">
-                    <p>Address: </p>
-                    <span><%= food.address %></span>
-                </div>
-                <div class="flexRow">
-                    <p>Ratings: </p>
-                    <span><%-include('../partials/convertStars.ejs', {item: food}) %></span>
-                </div>
-                <div class="flexRow">
-                    <p>Price: </p>
-                    <span>~ $<%= food.price %>/pax</span>
-                </div>
-                <div class="flexRow">
-                    <p>Tags: </p>
-                    <span>
-                        <% food.type.forEach(type => { %>
-                            <%=type%> 
-                        <% }) %>
-                    </span>
-                </div>
-                <div class="flexRow">
-                    <p>Date added: </p>
-                    <% var foodDate = food.date.toDateString().split(' ') %>
-                    <% foodDate = `${foodDate[1]} ${foodDate[2]} ${foodDate[3]}`%>
-                    <span><%=foodDate%></span>
-                </div>
-            </div>
-        </div>
+        <%- include('../partials/individualFoodElement') %>
     </div>
 
     <div class="showShopContent">

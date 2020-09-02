@@ -1,25 +1,82 @@
-<div class="inputFields">
-    <% if (action == 'new') { %>
-        <form action="/new" method="POST">
-            <%- include('./partials/foodForm.ejs') %>
-        </form>
-        <form action="/newShop" method="POST">
-            <%- include('./partials/shopForm.ejs') %>
-        </form>
-    <% }  else if (form == 'food') { %>
-            <form action="/food/<%=food.id%>?_method=PUT" method="POST">
+<div class="formContainer">
+    <div class="inputFields">
+        <% if (action == 'new') { %>
+            <form action="/new" method="POST">
                 <%- include('./partials/foodForm.ejs') %>
-            </form>            
-        <% } else { %>
-            <form action="/shop/<%=shop.id%>?_method=PUT" method="POST">
+            </form>
+            <form action="/newShop" method="POST">
                 <%- include('./partials/shopForm.ejs') %>
             </form>
-            <script>
-                var inputForNewShop = document.getElementsByClassName('inputForNewShop')[0]
-                console.log(inputForNewShop)
-                inputForNewShop.style.display = 'block'
-            </script>
-        <% } %>
-
     
+    
+        <% }  else if (form == 'food') { %>
+                <form action="/food/<%=food.id%>?_method=PUT" method="POST">
+                    <%- include('./partials/foodForm.ejs') %>
+                </form>            
+    
+    
+            <% } else { %>
+                <form action="/shop/<%=shop.id%>?_method=PUT" method="POST">
+                    <%- include('./partials/shopForm.ejs') %>
+                </form>
+                <script>
+                    var inputForNewShop = document.getElementsByClassName('inputForNewShop')[0]
+                    console.log(inputForNewShop)
+                    inputForNewShop.style.display = 'block'
+                </script>
+            <% } %>
+    </div>
+
+    <% if (action =='new') { %>
+        <div class="displayShopItems">
+            <h2>Other Food from Shop:</h2>
+            <% shops.forEach(shop => { %>
+                <% shop.food.forEach(food => { %>
+                    <div class="shopFoodContent <%=shop.shopName%>">
+                        <div class="shopItemRow">
+                            <span><%=food.name%></span>
+                            <div class="shopItemRowStars">
+                                <%- include('./partials/convertStars.ejs', {item: food}) %>
+                            </div>
+                            <div class="shopItemRowArrowDown">
+                                <img src="/images/arrowDown.png">
+                            </div>
+                        </div>
+        
+                        <div class="newShowFoodContent">
+                            <div class="header">
+                                <div>
+                                    <img src='<%=food.foodImagePath%>' height='100px' width='100px'>
+                                </div>
+                            </div>
+                            <div class="body">
+                                <div class="flexRow">
+                                    <p>Rating: </p>
+                                    <span><%= food.ratings %> Star</span>
+                                </div>
+                                <div class="flexRow">
+                                    <p>Price: </p>
+                                    <span>~ $<%= food.price %>/pax</span>
+                                </div>
+                                <div class="flexRow">
+                                    <p>Tags: </p>
+                                    <span>
+                                        <% food.type.forEach(type => { %>
+                                            <%=type%> 
+                                        <% }) %>
+                                    </span>
+                                </div>
+                                <div class="flexRow">
+                                    <p>Date added: </p>
+                                    <% var foodDate = food.date.toDateString().split(' ') %>
+                                    <% foodDate = `${foodDate[1]} ${foodDate[2]} ${foodDate[3]}`%>
+                                    <span><%=foodDate%></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% }) %>
+        </div>
+    <% } %>
 </div>

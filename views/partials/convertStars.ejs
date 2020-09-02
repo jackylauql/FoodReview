@@ -2,12 +2,6 @@
 <% var fillPercent = Math.floor((item.ratings - fullStars) * 100) %>
 <% var fillPixels = Math.floor((18 / 100) * fillPercent) %>
 
-<script> 
-    var partialStar = document.getElementsByClassName('partialStar')[0]
-    var pixels = document.getElementById('fillPixels')
-    partialStar.style.width = pixels.innerHTML + 'px'
-</script>
-
 <% var index = 0 %>
 <div class="star">
     <span id='fillPixels'><%=fillPixels%></span>
@@ -31,6 +25,11 @@
             <img src="/images/emptyStar.png">
             <% index = index + 1 %>
         <% } %>
+        <script> 
+            var partialStar = document.getElementsByClassName('partialStar')[0]
+            var pixels = document.getElementById('fillPixels')
+            partialStar.style.width = pixels.innerHTML + 'px'
+        </script>
     <% } %>
 </div>
 
