@@ -5,6 +5,36 @@ var inputForNewFood = document.getElementsByClassName('inputForNewFood')[0]
 var shopItemRow = document.getElementsByClassName('shopItemRow')
 var shopName = document.getElementById('shopName')
 var rightSide = document.getElementsByClassName('displayShopItems')[0]
+var newFoodButton = document.getElementById('newFoodSpot')
+var newShop = document.getElementById('newShop')
+
+newFoodButton.addEventListener('mouseover', () => {
+    if (inputForNewFood.style.display != 'block') {
+        newFoodButton.style.cursor = 'pointer'
+        newFoodButton.style.backgroundColor = 'white'
+    }    
+})
+
+newShop.addEventListener('mouseover', () => {
+    if (inputForNewShop.style.display != 'block') {
+        newShop.style.cursor = 'pointer'
+        newShop.style.backgroundColor = 'white'
+    }
+})
+
+newFoodButton.addEventListener('mouseout', () => {
+    if (inputForNewFood.style.display != 'block') {
+        newFoodButton.style.cursor = 'auto'
+        newFoodButton.style.backgroundColor = 'rgb(240, 240, 240)'
+    }
+})
+
+newShop.addEventListener('mouseout', () => {
+    if (inputForNewShop.style.display != 'block') {
+        newShop.style.cursor = 'auto'
+        newShop.style.backgroundColor = 'rgb(240, 240, 240)'
+    }
+})
 
 var currentShop = shopName.options[shopName.selectedIndex].innerHTML
 var currentShopClass = document.getElementsByClassName(currentShop)

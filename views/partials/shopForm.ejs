@@ -23,6 +23,16 @@
             <input class="textInput" type="text" name="postalcode" value="<%=shop.postalcode%>" maxlength="2" pattern="\d*" placeholder="First 2 Postal Code Digits">
         </div>
     </div>
+    <div>
+        <% if (shop.errorMessage) { %>
+            <h3 class="errorMessage"><%=shop.errorMessage%></h3>
+            <div class="errorDetails">
+                <% shop.errors.forEach(error => { %>
+                    <p>- <%= error %></p>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
     <div class="newButtonRow">
         <a href="/new"><button class="newCancelButton">Cancel</button></a>
         <button type="submit" class="newIntroduceButton">Introduce!</button>

@@ -78,10 +78,12 @@
     </div>
     <div>
         <% if (food.errorMessage) { %>
-            <p><%=food.errorMessage%></p>
-            <% food.errors.forEach(error => { %>
-                <p>- <%= error %></p>
-            <% }) %>
+            <h3 class="errorMessage"><%=food.errorMessage%></h3>
+            <div class="errorDetails">
+                <% food.errors.forEach(error => { %>
+                    <p>- <%= error %></p>
+                <% }) %>
+            </div>
         <% } %>
     </div>
     <div class="newButtonRow">

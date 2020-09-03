@@ -396,6 +396,50 @@ body {
     align-items: center;
 }
 
+.showSwiperContainer {
+    width: 45%;
+}
+
+.swiper-container {
+    width: 100%;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+
+.gallery-top {
+    height: 300px;
+    width: 100%;
+    margin-top: 20%;
+}
+
+.gallery-top .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-details {
+    height: 200px;
+}
+
+.gallery-thumbs {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+.gallery-thumbs .swiper-slide {
+    height: 100%;
+    opacity: 0.4;
+}
+
+.gallery-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
 .showFoodContent:hover .showFoodContentText {
     z-index: 2;
 }
@@ -417,26 +461,37 @@ body {
 }
 
 .edit {
-    background-color: rgb(125, 252, 220);
-    width: 160px;
-    height: 40px;
+    background-color: rgb(66, 252, 205);
+    font-size: 1.2rem;
+    width: 140px;
+    height: 60px;
     font-weight: bold;
-    border-radius: 15%;
+    border-radius: 15px;
+}
+
+.edit:hover {
+    background-color: rgb(148, 255, 228);
 }
 
 .delete {
     background-color: rgb(247, 55, 55);
-    width: 160px;
-    height: 40px;
+    width: 140px;
+    height: 60px;
     font-weight: bold;
-    border-radius: 15%;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+.delete:hover {
+    background-color: rgb(255, 128, 128);
 }
 
 .deleteConfirmationText {
     display: none;
     width: 100%;
-    color: rgb(170, 54, 54);
+    color: rgb(255, 95, 95);
     font-weight: bold;
+    font-size: 1.4rem;
 }
 
 .deleteConfirmationBox {
@@ -448,17 +503,29 @@ body {
 }
 
 .deleteYes {
-    background-color: rgb(125, 252, 220);
+    background-color: rgb(66, 252, 205);
     font-weight: bold;
-    border-radius: 15%; 
+    font-size: 1.2rem;
+    border-radius: 15px;
     width: 80px;
+    height: 40px;
+}
+
+.deleteYes:hover {
+    background-color: rgb(148, 255, 228);
 }
 
 .deleteNo {
     background-color: rgb(247, 55, 55);
     width: 80px;
+    height: 40px;
     font-weight: bold;
-    border-radius: 15%;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+.deleteNo:hover {
+    background-color: rgb(255, 128, 128);
 }
 
 .showFoodContentContainer .header {
@@ -540,14 +607,6 @@ body {
     padding: 6px 25px;
     z-index: 3;
     background-color: rgb(255, 255, 255);
-}
-
-#newFoodSpot:hover {
-    cursor: pointer;
-}
-
-#newShop:hover {
-    cursor: pointer;
 }
 
 .inputForNewFood {
@@ -797,6 +856,15 @@ body {
     height: 40px;   
     line-height: 40px; 
     position:relative;
+    z-index: 3;
+}
+
+.errorMessage {
+    color: rgb(255, 50, 50);
+}
+
+.errorDetails {
+    color: rgb(255, 136, 0);
 }
 
 /* Footer */

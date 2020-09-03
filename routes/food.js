@@ -8,7 +8,7 @@ imageTypes = ['image/jpeg', 'image/png', 'image/gif']
 router.get('/', async (req, res) =>{
     let query = Food.find().populate('shopName')
     if (req.query.keyword != null && req.query.keyword != '') {
-        query = query.find({ $or: [ {name: {$regex: new RegExp(req.query.keyword, 'i')}}, {address: {$regex: new RegExp(req.query.keyword, 'i')}}] })
+        query = query.find({ $or: [ {name: {$regex: new RegExp(req.query.keyword, 'i')}}, {shopName: {$regex: new RegExp(req.query.keyword, 'i')}}] })
     }
     const foods = await query.exec()
     
@@ -33,7 +33,7 @@ router.get('/', async (req, res) =>{
         try {
             filterType.forEach(food => {
                 req.query.location.forEach(location => {
-                    if (location.includes(food.postalcode)) {
+                    if (location.includes(food.shopName.postalcode)) {
                         filterLocation.push(food)
                         return
                     }
@@ -41,7 +41,7 @@ router.get('/', async (req, res) =>{
             })
         } catch {
             filterType.forEach(food => {
-                if (req.query.location.includes(food.postalcode)) {
+                if (req.query.location.includes(food.shopName.postalcode)) {
                     filterLocation.push(food)
                     return
                     }
