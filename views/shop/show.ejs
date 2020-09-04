@@ -63,32 +63,43 @@
         </div>
     </div>
     
-    <div class="showSwiperContainer">    
+    <div class="showSwiperContainer">
+        <div class="shopName">
+            <h2>Food Items from <%=shop.shopName%></h2>
+        </div>
         <div class="swiper-container gallery-top">
             <div class="swiper-wrapper">
                 <% shop.food.forEach(food => { %>
-                    <div class="swiper-slide">
-                        <img src='<%=food.foodImagePath%>'>
-                        <div class="swiper-details">
-                            <h3><%=food.name%></h3>
-                            <p><%=food.ratings%></p>
-                            <p><%=food.price%></p>
-                            <p><%=food.type%></p>
+                    <div class="swiper-slide" style="background-image:url(<%=food.foodImagePath%>)">
+                        <div class="swiper-content">
+                            <img src='<%=food.foodImagePath%>'>
+                            <div class="swiper-details">
+                                <h3><%=food.name%></h3>
+                                <h5>Ratings</h5>
+                                <p><%=food.ratings%> Star</p>
+                                <h5>Price</h5>
+                                <p>$<%=food.price%></p>
+                                <h5>Tags</h5>
+                                <p><%=food.type%></p>
+                            </div>
                         </div>
                     </div>
                 <% }) %>
+                
             </div>
             <!-- Add Arrows -->
-            <div class="swiper-button-next swiper-button-black"></div>
-            <div class="swiper-button-prev swiper-button-black"></div>
+            <div class="swiper-button-next swiper-button-white"></div>
+            <div class="swiper-button-prev swiper-button-white"></div>
+            
           </div>
           <div class="swiper-container gallery-thumbs">
             <div class="swiper-wrapper">
                 <% shop.food.forEach(food => { %>
-                    <div class="swiper-slide" style="background-image:url(<%=food.foodImagePath%>)"></div>
+                    <div class="swiper-slide" style="background-image:url(<%=food.foodImagePath%>);"></div>
                 <% }) %>
             </div>
           </div>
+          
     </div>
 
 
