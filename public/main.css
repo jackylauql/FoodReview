@@ -405,7 +405,7 @@ body {
 }
 
 .showSwiperContainer {
-    width: 500px;
+    width: 450px;
 }
 
 .gallery-top .swiper-wrapper .swiper-slide{
@@ -418,7 +418,7 @@ body {
 }
 
 .swiper-container {
-    width: 100%;
+    width: 450px;
 }
 
 .swiper-slide {
@@ -470,7 +470,7 @@ body {
 }
 
 .gallery-thumbs {
-    height: 150px;
+    height: 120px;
     box-sizing: border-box;
     padding: 10px 0;
     background-color: black;
@@ -975,6 +975,21 @@ footer {
     .searchOption {
         flex-basis: 48%;
     }
+
+    .showFoodContentContainer, 
+    .showShopContent
+    {
+        width: 100%;
+    }
+
+    .showFoodContentContainer {
+        padding-bottom: 50px;
+    }
+
+    .showSwiperContainer {
+        margin: auto;
+    }
+
 }
 
 @media only screen and (max-width: 850px) {
