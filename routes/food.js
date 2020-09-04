@@ -164,8 +164,8 @@ router.delete('/:id', async (req, res) =>{
     let food = await Food.findById(req.params.id)
     let shop = await Shop.findById(food.shopName)
     for (let i = 0; i < shop.allRatings.length; i++) {
-        if (allRatings[i] == food.ratings) {
-            allRatings.splice(i, 1)
+        if (shop.allRatings[i] == food.ratings) {
+            shop.allRatings.splice(i, 1)
             break
         }
     }

@@ -32,6 +32,9 @@
                 </div>
 
             </div>
+            <% if (shop.errorMessage) { %>
+                <div class="showErrorMessage"><%=shop.errorMessage%></div>
+            <% } %>
             <div class="body">
                 <div class="flexRow">
                     <p>Address: </p>

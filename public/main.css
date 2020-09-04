@@ -583,7 +583,7 @@ body {
 }
 
 .showFoodContentContainer .body {
-    width: 70%;
+    width: 100%;
     margin: auto;
 }
 
@@ -599,6 +599,15 @@ body {
     flex-grow: 1;
     text-align: right;
     flex-wrap: wrap;
+}
+
+.showErrorMessage {
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    color: red;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Right Side */

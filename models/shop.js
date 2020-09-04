@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Food = require('./shop.js')
+const Food = require('./food.js')
 
 const shopSchema = new mongoose.Schema({
     shopName: {
@@ -62,7 +62,17 @@ const shopSchema = new mongoose.Schema({
     }]
 })
 
-
+shopSchema.pre('remove', function(next){
+    Food.find({shopName: this.id}, (err, food) => {
+        if (err){
+            next(err)
+        } else if (food.length > 0) {
+            next(new Error(`Unable to delete ${this.shopName}, please delete all food under ${this.shopName} first`))
+        } else {
+            next()
+        }
+    })
+})
 
 shopSchema.virtual('foodImagePath').get(function() {
     return `data:${this.foodImageType};charset=utf-8;base64,${this.foodImage.toString('base64')}`

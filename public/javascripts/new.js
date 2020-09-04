@@ -36,16 +36,19 @@ newShop.addEventListener('mouseout', () => {
     }
 })
 
-var currentShop = shopName.options[shopName.selectedIndex].innerHTML
-var currentShopClass = document.getElementsByClassName(currentShop)
-var currentIndex = 0
-var prevShopClass = currentShopClass
-while (currentIndex < currentShopClass.length) {
-    currentShopClass[currentIndex].style.display = 'block'
-    currentShopClass[currentIndex].style.animationName = 'slideFromLeft'
-    currentShopClass[currentIndex].style.right = '0px'
-    currentIndex = currentIndex + 1
+if (shopName.options.length > 0) {
+    var currentShop = shopName.options[shopName.selectedIndex].innerHTML
+    var currentShopClass = document.getElementsByClassName(currentShop)
+    var currentIndex = 0
+    var prevShopClass = currentShopClass
+    while (currentIndex < currentShopClass.length) {
+        currentShopClass[currentIndex].style.display = 'block'
+        currentShopClass[currentIndex].style.animationName = 'slideFromLeft'
+        currentShopClass[currentIndex].style.right = '0px'
+        currentIndex = currentIndex + 1
+    }
 }
+
 
 const displayNone = () => {
     var index = 0

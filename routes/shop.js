@@ -123,12 +123,13 @@ router.put('/:id', async (req, res) =>{
 
 // Delete Shop
 router.delete('/:id', async (req, res) =>{
-    let shop = await Shop.findById(req.params.id)
+    let shop = await Shop.findById(req.params.id).populate('food').exec()
     try {
         await shop.remove()
         res.redirect('/shop')
-    } catch {
-        res.redirect(`${shop.id}`)
+    } catch (err) {
+        shop.errorMessage = err.message
+        res.render('shop/show', {shop: shop})
     }
 })
 
