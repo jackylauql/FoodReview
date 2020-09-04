@@ -91,7 +91,7 @@ shopName.addEventListener('change', () => {
 
 newFoodSpotButton.addEventListener('click', () => {
     inputForNewFood.style.display = 'block'
-    newFoodSpotButton.style.padding = '6px 25px'
+    newFoodSpotButton.style.padding = '7px 25px'
     newFoodSpotButton.style.backgroundColor = 'rgb(255, 255, 255)'
     newFoodSpotButton.style.zIndex = '3'
 
@@ -99,14 +99,14 @@ newFoodSpotButton.addEventListener('click', () => {
     rightSide.style.right = '0px'
 
     inputForNewShop.style.display = 'none'
-    newShopButton.style.padding = '5px 25px'
+    newShopButton.style.padding = '6px 25px'
     newShopButton.style.backgroundColor = 'rgb(240, 240, 240)'
     newShopButton.style.zIndex = '0'
 })
 
 newShopButton.addEventListener('click', () => {
     inputForNewShop.style.display = 'block'
-    newShopButton.style.padding = '6px 25px'
+    newShopButton.style.padding = '7px 25px'
     newShopButton.style.backgroundColor = 'rgb(255, 255, 255)'
     newShopButton.style.zIndex = '3'
 
@@ -114,7 +114,7 @@ newShopButton.addEventListener('click', () => {
     rightSide.style.right = '500px'
 
     inputForNewFood.style.display = 'none'
-    newFoodSpotButton.style.padding = '5px 25px'
+    newFoodSpotButton.style.padding = '6px 25px'
     newFoodSpotButton.style.backgroundColor = 'rgb(240, 240, 240)'
     newFoodSpotButton.style.zIndex = '0'
 })
